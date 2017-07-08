@@ -3,7 +3,15 @@
 -- https://github.com/bradchendev/Power-SQL-Scripts
 -- https://blogs.msdn.microsoft.com/bradchen/
 -- Create date: 2017/7/8
--- Description:	Identity
+-- Description:	Identity 
+-- CREATE TABLE (Transact-SQL) IDENTITY (Property)
+-- https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property
+-- @@IDENTITY  (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/functions/identity-transact-sql
+-- DBCC CHECKIDENT (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql
+-- IDENTITY (Function) (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/functions/identity-function-transact-sql
 -- =============================================
 
 
