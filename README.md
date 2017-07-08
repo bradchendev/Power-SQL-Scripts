@@ -1,2 +1,2 @@
 # Database-sql-Scripts
-useful sql scripts
+SQL Scripts for DBA Administrator and Developer
