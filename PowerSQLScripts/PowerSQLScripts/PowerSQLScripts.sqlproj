@@ -70,8 +70,14 @@
     <Folder Include="PowerSQLScripts\SqlServer\HA_DR\AlwaysOn" />
     <Folder Include="PowerSQLScripts\SqlServer\HA_DR\LogShipping" />
     <Folder Include="PowerSQLScripts\SqlServer\HA_DR\Replication" />
-    <Folder Include="PowerSQLScripts\SqlServer\ERRORLOG" />
-    <Folder Include="PowerSQLScripts\SqlServer\Index" />
+    <Folder Include="PowerSQLScripts\SqlServer\ErrorLog" />
+    <Folder Include="PowerSQLScripts\SqlServer\Index_Statistic" />
+    <Folder Include="PowerSQLScripts\SqlServer\Code_Review" />
+    <Folder Include="PowerSQLScripts\SqlServer\Tempdb" />
+    <Folder Include="PowerSQLScripts\SqlServer\Server Configuration" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\Permission" />
+    <Folder Include="PowerSQLScripts\SqlServer\Stored_Procedure\Develop" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\Tables\Table_Identity.sql" />
@@ -82,9 +88,22 @@
     <None Include="PowerSQLScripts\SqlServer\Database\DB_Backup_Retore.sql" />
     <None Include="PowerSQLScripts\SqlServer\Database\DB_DatabaseFile_Size.sql" />
     <None Include="PowerSQLScripts\SqlServer\Database\DB_Estimate_Size.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index\Index_List.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index\Index_Create_Alter.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index\Index_Rebuild.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Index_List.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Index_Create_Alter.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Index_Rebuild.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Statistic.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Code_Review\replace cursor with while loop.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Tempdb\Tempdb.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Server Configuration\sp_configure.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Logins.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Tables\資料表_Row_Size.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Tables\資料表_欄位與描述.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Tables\資料表_筆數與大小.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Permission\Grant_Revoke.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Permission\權限-列出物件或使用者的權限.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Permission\權限-產生GRANT語法for SP.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Develop\把多筆資料變成一筆，以逗點分隔.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Develop\把以點分隔的字串切割，放入每一筆資料.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\Database\DB_Create_Move.sql" />
