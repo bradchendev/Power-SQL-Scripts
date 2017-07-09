@@ -61,51 +61,103 @@
     <Folder Include="PowerSQLScripts\SqlServer" />
     <Folder Include="PowerSQLScripts\MySql" />
     <Folder Include="PowerSQLScripts\Oracle" />
-    <Folder Include="PowerSQLScripts\SqlServer\Tables" />
+    <Folder Include="PowerSQLScripts\SqlServer\02_Tables" />
     <Folder Include="PowerSQLScripts\SqlServer\Stored_Procedure" />
-    <Folder Include="PowerSQLScripts\SqlServer\Database" />
+    <Folder Include="PowerSQLScripts\SqlServer\04_Database" />
     <Folder Include="PowerSQLScripts\SqlServer\01_Session_Requests" />
     <Folder Include="PowerSQLScripts\SqlServer\Convert_Format" />
-    <Folder Include="PowerSQLScripts\SqlServer\HA_DR" />
-    <Folder Include="PowerSQLScripts\SqlServer\HA_DR\AlwaysOn" />
-    <Folder Include="PowerSQLScripts\SqlServer\HA_DR\LogShipping" />
-    <Folder Include="PowerSQLScripts\SqlServer\HA_DR\Replication" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\AlwaysOn" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\LogShipping" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication" />
     <Folder Include="PowerSQLScripts\SqlServer\ErrorLog" />
-    <Folder Include="PowerSQLScripts\SqlServer\Index_Statistic" />
+    <Folder Include="PowerSQLScripts\SqlServer\03_Index_Statistic" />
     <Folder Include="PowerSQLScripts\SqlServer\Code_Review" />
     <Folder Include="PowerSQLScripts\SqlServer\Tempdb" />
     <Folder Include="PowerSQLScripts\SqlServer\Server Configuration" />
     <Folder Include="PowerSQLScripts\SqlServer\Security" />
-    <Folder Include="PowerSQLScripts\SqlServer\Security\Permission" />
-    <Folder Include="PowerSQLScripts\SqlServer\Stored_Procedure\Develop" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\Object Permission" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\Data Security" />
+    <Folder Include="PowerSQLScripts\SqlServer\Sample DB or Table" />
+    <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop" />
+    <Folder Include="PowerSQLScripts\SqlServer\Transaction Log" />
+    <Folder Include="PowerSQLScripts\SqlServer\SQLCLR_ExtentedProcedure" />
+    <Folder Include="PowerSQLScripts\SqlServer\SQL Agent Job" />
+    <Folder Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\Logins and Password" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\CPU high" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Memory" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Parallel Query" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads" />
+    <Folder Include="PowerSQLScripts\SqlServer\Linked Server" />
+    <Folder Include="PowerSQLScripts\SqlServer\Reporting Service" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PowerSQLScripts\SqlServer\Tables\Table_Identity.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Tables\Table_Create_Alter.sql" />
+    <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
+    <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Create_Alter.sql" />
     <None Include="PowerSQLScripts\SqlServer\Convert_Format\Datetime Format.sql" />
     <None Include="PowerSQLScripts\SqlServer\01_Session_Requests\Current_Requests.sql" />
     <None Include="PowerSQLScripts\SqlServer\ERRORLOG\ErrorLog.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Database\DB_Backup_Retore.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Database\DB_DatabaseFile_Size.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Database\DB_Estimate_Size.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Index_List.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Index_Create_Alter.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Index_Rebuild.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Index_Statistic\Statistic.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Backup_Retore.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_DatabaseFile_Size.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Estimate_Size.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_List.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_Create_Alter.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_Rebuild.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Statistic.sql" />
     <None Include="PowerSQLScripts\SqlServer\Code_Review\replace cursor with while loop.sql" />
     <None Include="PowerSQLScripts\SqlServer\Tempdb\Tempdb.sql" />
     <None Include="PowerSQLScripts\SqlServer\Server Configuration\sp_configure.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Security\Logins.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Tables\資料表_Row_Size.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Tables\資料表_欄位與描述.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Tables\資料表_筆數與大小.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Security\Permission\Grant_Revoke.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Security\Permission\權限-列出物件或使用者的權限.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Security\Permission\權限-產生GRANT語法for SP.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Develop\把多筆資料變成一筆，以逗點分隔.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Develop\把以點分隔的字串切割，放入每一筆資料.sql" />
+    <None Include="PowerSQLScripts\SqlServer\02_Tables\資料表_筆數與大小Row_Size.sql" />
+    <None Include="PowerSQLScripts\SqlServer\02_Tables\資料表_欄位與描述.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Object Permission\Grant_Revoke.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Object Permission\權限-列出物件或使用者的權限.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Object Permission\權限-產生GRANT語法for SP.sql" />
+    <None Include="PowerSQLScripts\SqlServer\02_Tables\資料表_欄位PK_FK.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Data Security\資料加解密Data Encryption.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Sample DB or Table\Create Sample Table.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Stored Procedure Owner擁有者.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Transaction Log\TLog_DBCC.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQLCLR_ExtentedProcedure\SQLCLR與Extended Proc.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Where_搜尋特殊字元Search_special wildcard characters.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Where寫法.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Agent Job\SQL Agent and Jobs.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQL Profiler and SQL Trace.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Logins and Password\Recover_missing_sa_password.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\搜尋資料庫物件Search Database Objects.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Search KeyWord in SP.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\CPU high\Troubleshooting CPU High.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\CPU high\CPU_High_Demo_Code.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Memory\Memory Usage.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Parallel Query\Parallel Query.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Transaction_in_Datafile.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Worker Threads.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Setup.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Distributor.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Agent and Latency.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Server Configuration\DBCC TRACEON.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\鎖定資料表防止其他連線存取Lock table prevent from other session.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Linked Server\Linked Server List.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Linked Server\Linked Server Dependencies.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Reporting Service\Reporting Service.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PowerSQLScripts\SqlServer\Database\DB_Create_Move.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Current Login User.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\比對資料.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\把以點分隔的字串切割，放入每一筆資料.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\把多筆資料變成一筆，以逗點分隔.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\Security\Logins and Password\Logins.sql" />
   </ItemGroup>
 </Project>
