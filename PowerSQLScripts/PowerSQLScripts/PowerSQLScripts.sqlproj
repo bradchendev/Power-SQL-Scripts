@@ -65,7 +65,6 @@
     <Folder Include="PowerSQLScripts\SqlServer\Stored_Procedure" />
     <Folder Include="PowerSQLScripts\SqlServer\04_Database" />
     <Folder Include="PowerSQLScripts\SqlServer\01_Session_Requests" />
-    <Folder Include="PowerSQLScripts\SqlServer\Convert_Format" />
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR" />
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\AlwaysOn" />
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\LogShipping" />
@@ -92,11 +91,12 @@
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads" />
     <Folder Include="PowerSQLScripts\SqlServer\Linked Server" />
     <Folder Include="PowerSQLScripts\SqlServer\Reporting Service" />
+    <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\Convert_Format" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Create_Alter.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Convert_Format\Datetime Format.sql" />
     <None Include="PowerSQLScripts\SqlServer\01_Session_Requests\Current_Requests.sql" />
     <None Include="PowerSQLScripts\SqlServer\ERRORLOG\ErrorLog.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Backup_Retore.sql" />
@@ -141,6 +141,13 @@
     <None Include="PowerSQLScripts\SqlServer\Linked Server\Linked Server List.sql" />
     <None Include="PowerSQLScripts\SqlServer\Linked Server\Linked Server Dependencies.sql" />
     <None Include="PowerSQLScripts\SqlServer\Reporting Service\Reporting Service.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Datetime_Datediff.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Convert_Format\Format_money.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Linked Server\Openquery.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Query Hint.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Execute As.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\DBCC for Query Tuning.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Check Object Exists.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
@@ -159,5 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\Security\Logins and Password\Logins.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Convert_Format\Datetime Format.sql" />
   </ItemGroup>
 </Project>
