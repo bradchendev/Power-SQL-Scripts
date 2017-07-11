@@ -148,6 +148,7 @@
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Execute As.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\DBCC for Query Tuning.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Check Object Exists.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\LogShipping\LogShipping_Troubleshooting.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
