@@ -151,7 +151,7 @@
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Execute As.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\DBCC for Query Tuning.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Check Object Exists.sql" />
-    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance\Script1.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance\Dynamic Where Condition動態Where條件_1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
