@@ -1,0 +1,38 @@
+
+
+1.requirement
+(1)join domain
+(2)network nic (heartbeat IP Address)
+
+
+(3)Name and IP
+Cluster Name: clust1
+Cluster IP: 172.16.xx.xx
+MSDTC Cluster Name
+MSDTC cluster IP: 172.16.xx.xx
+
+(4)Disk
+Quorum, MSDTC, SQLData...
+
+
+
+2.Setup 
+
+Failover Cluster Step-by-Step Guide: Configuring Accounts in Active Directory
+https://technet.microsoft.com/en-us/library/9965eec5-2500-4038-b4e8-ae1dfb7d9ec9
+Account of the person who installs the cluster: The person who installs the cluster must use an account with the following characteristics:
+
+(1)The account must be a domain account. It does not have to be a domain administrator account. 
+(2)The account must have administrative permissions on the servers that will become cluster nodes.
+     Local administrators on each node
+(3)The account (or the group that the account is a member of) must be given the Create Computer objects and Read All Properties permissions in the container that is used for computer accounts in the domain.
+(4)If your organization chooses to prestage the cluster name account (a computer account with the same name as the cluster), the prestaged cluster name account must give ¡§Full Control¡¨ permission to the account of the person who installs the cluster.
+
+
+2.
+pre-stage
+
+or
+
+3.Enable [.Net Framework 3.5 Featrue]
+4.Enable [Failover Clustering] Feature

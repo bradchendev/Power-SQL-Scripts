@@ -1,0 +1,8 @@
+
+
+
+1.Launch PowerShell ISE
+2.Type and Execute
+.\Convert-Encoding-Unicode.ps1 -SourcePath E:\SQLs -Destination E:\SQLs\Unicode -Encoding unicode
+
+Convert each sql file to Unicode Encoding

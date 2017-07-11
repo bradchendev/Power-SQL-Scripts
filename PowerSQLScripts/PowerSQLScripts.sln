@@ -5,6 +5,26 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PowerSQLScripts", "PowerSQLScripts\PowerSQLScripts.sqlproj", "{B1CEE679-7C22-490C-B4AD-7EA019B86898}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B912E8B0-B11A-49E2-89A6-1918EF91ADD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerDevOpsScripts", "PowerDevOpsScripts", "{A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}"
+	ProjectSection(SolutionItems) = preProject
+		Convert_Encoding.txt = Convert_Encoding.txt
+		IpSec.txt = IpSec.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Network", "Network", "{CA57307A-7D58-48BB-824D-9052B1AF5996}"
+	ProjectSection(SolutionItems) = preProject
+		Ip Subnet Notes.txt = Ip Subnet Notes.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cluster", "Cluster", "{E62A2267-CDA6-42D3-B452-B48DBC6C51FA}"
+	ProjectSection(SolutionItems) = preProject
+		SQL Cluster.txt = SQL Cluster.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1E7F687-C28F-4B9E-A8C5-990EED3E95BB} = {B912E8B0-B11A-49E2-89A6-1918EF91ADD5}
+		{7E26A970-21A5-489C-BC1F-09CD8DCC7AA9} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
+		{CA57307A-7D58-48BB-824D-9052B1AF5996} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
+		{E62A2267-CDA6-42D3-B452-B48DBC6C51FA} = {7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}
 	EndGlobalSection
 EndGlobal

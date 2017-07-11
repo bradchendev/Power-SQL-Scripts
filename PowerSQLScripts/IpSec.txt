@@ -1,0 +1,12 @@
+Netsh Commands for Internet Protocol Security (IPsec)
+https://technet.microsoft.com/en-us/library/cc725926(v=ws.10).aspx
+
+
+增加一個IP
+netsh ipsec static add filter filterlist="Allow AP 1433 In" protocol=TCP srcaddr="172.16.5.33" srcmask=32 srcport=0 dstaddr=ME dstport=1433 mirrored=YES description="Bob's PC"
+
+刪除一個IP
+netsh ipsec static delete filter filterlist="Allow AP 1433 In" srcaddr="172.16.5.33" dstaddr=me
+
+查詢目前設定的IP與描述
+netsh ipsec static show filterlist name="Allow AP 1433 In" level=verbose 

@@ -48,3 +48,24 @@ SELECT * FROM dbo.Table_Ident4;
 
 --drop table dbo.Table_Ident4 
 
+
+
+
+
+
+--DBCC CHECKIDENT (Transact-SQL)
+--https://msdn.microsoft.com/en-us/library/ms176057.aspx
+--B. Reporting the current identity value
+--The following example reports the current identity value in the specified table in the AdventureWorks2012 database, and does not correct the identity value if it is incorrect.
+--USE AdventureWorks2012;   
+--GO  
+--DBCC CHECKIDENT ('Person.AddressType', NORESEED);   
+--GO  
+  
+
+--C. Forcing the current identity value to a new value
+--The following example forces the current identity value in the AddressTypeID column in the AddressType table to a value of 10. Because the table has existing rows, the next row inserted will use 11 as the value, that is, the new current increment value defined for the column value plus 1.
+--USE AdventureWorks2012;  
+--GO  
+--DBCC CHECKIDENT ('Person.AddressType', RESEED, 10);  
+--GO  

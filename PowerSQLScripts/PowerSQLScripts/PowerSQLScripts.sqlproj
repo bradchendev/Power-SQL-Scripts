@@ -93,6 +93,11 @@
     <Folder Include="PowerSQLScripts\SqlServer\Reporting Service" />
     <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\Convert_Format" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning" />
+    <Folder Include="PowerSQLScripts\SqlServer\04_Database\Size" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Performance Counter" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\RML ReadTrace" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry" />
+    <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -100,8 +105,6 @@
     <None Include="PowerSQLScripts\SqlServer\01_Session_Requests\Current_Requests.sql" />
     <None Include="PowerSQLScripts\SqlServer\ERRORLOG\ErrorLog.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Backup_Retore.sql" />
-    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_DatabaseFile_Size.sql" />
-    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Estimate_Size.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_List.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_Create_Alter.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_Rebuild.sql" />
@@ -148,6 +151,14 @@
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Execute As.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\DBCC for Query Tuning.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Check Object Exists.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Stored_Procedure\Get SP Definition into Table.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\List_AllObjectsIndexes_Per_Filegroup.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Insert Execute SQL.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\執行計畫 Execution Plan.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Performance Counter\Performance Counter.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\RML ReadTrace\RML_ReadTrace.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry\SQL Sentry_Third-Party_.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance\Dynamic Where Condition動態Where條件.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
@@ -169,5 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Convert_Format\Datetime Format.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\DB_DatabaseFile_Size.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\DB_Estimate_Size.sql" />
   </ItemGroup>
 </Project>
