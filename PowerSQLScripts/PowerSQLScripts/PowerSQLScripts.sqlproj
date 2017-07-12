@@ -188,5 +188,6 @@
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\RML ReadTrace\RML_ReadTrace.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Performance Counter\Performance Counter.sql" />
     <Build Include="PowerSQLScripts\SqlServer\04_Database\Size\List_AllObjectsIndexes_Per_Filegroup.sql" />
+    <Build Include="PowerSQLScripts\SqlServer\00_HA_DR\LogShipping\LogShipping_Troubleshooting.sql" />
   </ItemGroup>
 </Project>
