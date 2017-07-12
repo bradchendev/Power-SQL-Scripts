@@ -98,6 +98,7 @@
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\RML ReadTrace" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry" />
     <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance" />
+    <Folder Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -152,6 +153,12 @@
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\DBCC for Query Tuning.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Check Object Exists.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry\SQL Sentry_Third-Party.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Convert_Format\UtcTime_Convert.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\01.StartSQLTrace_SP.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\02.CreateFolderBatch.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\03.StartSQLTrace_Job.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\04.Copy trc file to RML ReadTrace Server.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\05.Import trc into RML ReadTrace_Job.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />

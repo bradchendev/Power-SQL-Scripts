@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PowerSQLScripts", "PowerSQLScripts\PowerSQLScripts.sqlproj", "{B1CEE679-7C22-490C-B4AD-7EA019B86898}"
 EndProject
@@ -25,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cluster", "Cluster", "{E62A
 		SQL Cluster.txt = SQL Cluster.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schedule", "Schedule", "{6C49E4E0-77DC-4111-A14C-B416C49989D9}"
+	ProjectSection(SolutionItems) = preProject
+		Schedule_Solution.txt = Schedule_Solution.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,5 +51,6 @@ Global
 		{7E26A970-21A5-489C-BC1F-09CD8DCC7AA9} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 		{CA57307A-7D58-48BB-824D-9052B1AF5996} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 		{E62A2267-CDA6-42D3-B452-B48DBC6C51FA} = {7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}
+		{6C49E4E0-77DC-4111-A14C-B416C49989D9} = {7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}
 	EndGlobalSection
 EndGlobal

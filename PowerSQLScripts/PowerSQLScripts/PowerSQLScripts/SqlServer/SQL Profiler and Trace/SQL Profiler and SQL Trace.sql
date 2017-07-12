@@ -300,7 +300,15 @@ AND     CPU < (Duration * 1000)
 -- Duration 10^-6 (microseconds)
 -- CPU 10^-3 (millinseconds)
 
--- SQL Profiler - displays the Duration column in milliseconds by default
+-- SQL Profiler 
+-- displays the Duration column in milliseconds( 10^-3) by default
+
+
+--The server reports the duration of an event in microseconds (10^-6 seconds) and 
+--the amount of CPU time used by the event in milliseconds (10^-3 seconds). 
+
+--The SQL Server Profiler graphical user interface displays the Duration column in milliseconds by default, 
+--but when a trace is saved to either a file or a database table, the Duration column value is written in microseconds.
 
 
 

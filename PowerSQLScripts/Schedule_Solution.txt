@@ -1,0 +1,22 @@
+
+1.Task Scheduler
+
+Start Task Scheduler
+https://technet.microsoft.com/en-us/library/cc721931(v=ws.11).aspx
+Task Scheduler How To...
+https://technet.microsoft.com/en-us/library/cc766428(v=ws.11).aspx
+
+2.AT
+
+How To Use the AT Command to Schedule Tasks
+https://support.microsoft.com/en-us/help/313565/how-to-use-the-at-command-to-schedule-tasks
+At
+https://technet.microsoft.com/en-us/library/bb490866.aspx
+Schedules commands and programs to run on a computer at a specified time and date. You can use at only when the Schedule service is running. Used without parameters, at lists scheduled commands.
+Syntax
+at [\\ComputerName] [{[ID] [/delete]|/delete [/yes]}]
+at [[\\ComputerName] hours:minutes [/interactive] [{/every:date[,...]|/next:date[,...]}] command]
+
+3.SQL Agent Job
+SQL Server Agent
+https://docs.microsoft.com/en-us/sql/ssms/agent/sql-server-agent
