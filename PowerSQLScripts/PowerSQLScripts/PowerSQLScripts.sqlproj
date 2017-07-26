@@ -99,6 +99,7 @@
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry" />
     <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance" />
     <Folder Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\Role" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -159,6 +160,10 @@
     <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\03.StartSQLTrace_Job.sql" />
     <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\04.Copy trc file to RML ReadTrace Server.sql" />
     <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\05.Import trc into RML ReadTrace_Job.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\Database Role.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetAllDbRoleByDbUser.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleByDbName.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRolePermissionByDbRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />

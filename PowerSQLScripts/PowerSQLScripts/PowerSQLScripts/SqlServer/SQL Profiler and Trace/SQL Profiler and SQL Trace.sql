@@ -4,10 +4,25 @@
 -- https://blogs.msdn.microsoft.com/bradchen/
 -- Create date: 2017/7/9
 -- Description:	SQL Profiler and SQL Trace
-
+-- sp_trace_setevent (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-trace-setevent-transact-sql
 -- =============================================
 
+SELECT ca.name,
+ev.name,
+ev.trace_event_id,
+ca.category_id
+ FROM 
+sys.trace_categories ca
+inner join 
+sys.trace_events ev
+on ca.category_id = ev.category_id
+where ca.name = 'Performance'
 
+select * from sys.trace_columns
+
+
+-- =============================================
 SELECT * FROM sys.trace_categories
 --category_id	name	type
 --1	Cursors	0
