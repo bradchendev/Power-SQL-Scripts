@@ -24,6 +24,7 @@ Select * from @LogSpaceUsed;
 
 
 -- 利用linked server 無需事先建立資料表
+-- 不一定能成功，要看SP裡面的寫法
 sp_addlinkedserver @server = 'LOCALTEST',  @srvproduct = '',@provider = 'SQLOLEDB', @datasrc = @@servername
 
 SELECT  *
@@ -31,3 +32,35 @@ INTO    #myTempTable
 FROM    OPENQUERY(LOCALTEST, 'EXEC AdventureWorks2008R2.dbo.uspGetEmployeeManagers 2');
 
 sp_dropserver  @server = 'LOCALTEST'
+
+
+-- 這種SP sp_helprotect就會失敗
+sp_addlinkedserver @server = 'LOCALTEST',  @srvproduct = '',@provider = 'SQLOLEDB', @datasrc = @@servername
+
+select * INTO #tempTable FROM OPENQUERY(LOCALTEST, 'EXECUTE sp_helprotect NULL, ''QA'' ');
+
+sp_dropserver  @server = 'LOCALTEST'
+
+--Msg 208, Level 16, State 1, Procedure sp_helprotect, Line 129
+--Invalid object name '#t1_Prots'.
+
+
+
+-- 另一種可以試試
+sp_configure 'Show Advanced Options', 1
+GO
+RECONFIGURE
+GO
+sp_configure 'Ad Hoc Distributed Queries', 1
+GO
+RECONFIGURE
+GO
+
+SELECT * INTO #TempTable FROM OPENROWSET('SQLNCLI', 'Server=(local);Trusted_Connection=yes;',
+     'EXEC AdventureWorks2008R2.dbo.uspGetEmployeeManagers 2')
+
+SELECT * FROM #TempTable
+
+-- 上述方法，如果用sp_helprotect還是會失敗
+--Msg 208, Level 16, State 1, Procedure sp_helprotect, Line 129
+--Invalid object name '#t1_Prots'.
