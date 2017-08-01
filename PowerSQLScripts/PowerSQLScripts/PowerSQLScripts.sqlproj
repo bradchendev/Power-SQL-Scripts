@@ -164,7 +164,7 @@
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetAllDbRoleByDbUser.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleByDbName.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRolePermissionByDbRole.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleByDbUser.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleMemberByDbUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
