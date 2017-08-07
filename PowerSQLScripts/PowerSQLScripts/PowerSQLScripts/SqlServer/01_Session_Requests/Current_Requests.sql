@@ -37,8 +37,34 @@ from sys.dm_exec_sessions se
 inner Join sys.dm_exec_connections con on se.session_id=con.session_id and se.is_user_process = 1
 Left join sys.dm_exec_requests req on req.session_id = se.session_id
 CROSS APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
+order by req.cpu_time DESC
+GO
 
-
+-- 含執行計畫 Baisc query for current requests and session
+select 
+se.session_id, 
+se.status,
+req.status,
+req.wait_type,
+req.wait_time,
+se.host_name,
+se.program_name,
+se.last_request_start_time,
+se.last_request_end_time,
+st.text as [Parent Query],
+SUBSTRING(st.text, (req.statement_start_offset/2)+1,
+((CASE req.statement_end_offset
+WHEN -1 THEN DATALENGTH(st.text)
+ELSE req.statement_end_offset
+END - req.statement_start_offset)/2) + 1) AS statement_text,
+execPlan.query_plan
+from sys.dm_exec_sessions se
+inner Join sys.dm_exec_connections con on se.session_id=con.session_id and se.is_user_process = 1
+Left join sys.dm_exec_requests req on req.session_id = se.session_id
+CROSS APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
+CROSS APPLY sys.dm_exec_query_plan(req.plan_handle) as execPlan
+order by req.cpu_time DESC
+GO
 
 
 

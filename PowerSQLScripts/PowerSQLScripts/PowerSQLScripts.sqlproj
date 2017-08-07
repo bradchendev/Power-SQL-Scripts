@@ -95,11 +95,12 @@
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning" />
     <Folder Include="PowerSQLScripts\SqlServer\04_Database\Size" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Performance Counter" />
-    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\RML ReadTrace" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry" />
     <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance" />
     <Folder Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection" />
     <Folder Include="PowerSQLScripts\SqlServer\Security\Role" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool" />
+    <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -164,7 +165,8 @@
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetAllDbRoleByDbUser.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleByDbName.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRolePermissionByDbRole.sql" />
-    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleMemberByDbUser.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleMember.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\SQL Nexus Tool.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
@@ -198,9 +200,11 @@
     <Build Include="PowerSQLScripts\SqlServer\TSQL Develop\TSQL Performance\Dynamic Where Condition動態Where條件.sql" />
     <Build Include="PowerSQLScripts\SqlServer\TSQL Develop\Insert Execute SQL.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Query Tuning\執行計畫 Execution Plan.sql" />
-    <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\RML ReadTrace\RML_ReadTrace.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Performance Counter\Performance Counter.sql" />
     <Build Include="PowerSQLScripts\SqlServer\04_Database\Size\List_AllObjectsIndexes_Per_Filegroup.sql" />
     <Build Include="PowerSQLScripts\SqlServer\00_HA_DR\LogShipping\LogShipping_Troubleshooting.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML ReadTrace Install.sql" />
+    <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML_ReadTrace.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML_ReadTrace_Import.sql" />
   </ItemGroup>
 </Project>

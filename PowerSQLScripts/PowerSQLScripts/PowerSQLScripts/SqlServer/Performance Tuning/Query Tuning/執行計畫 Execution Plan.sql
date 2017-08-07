@@ -70,27 +70,30 @@ CROSS APPLY sys.dm_exec_sql_text(cp.plan_handle) AS st;
 --StmtText	StmtId	NodeId	Parent	PhysicalOp	LogicalOp	Argument	DefinedValues	EstimateRows	EstimateIO	EstimateCPU	AvgRowSize	TotalSubtreeCost	OutputList	Warnings	Type	Parallel	EstimateExecutions
 SET SHOWPLAN_ALL ON;
 GO
--- 不執行，只會產生文字執行計畫
---Causes Microsoft SQL Server not to execute Transact-SQL statements. 
---Instead, SQL Server returns detailed information about how the statements are executed and provides estimates of the resource requirements for the statements.
---SET SHOWPLAN_ALL (Transact-SQL)
---https://msdn.microsoft.com/en-us/library/ms187735.aspx
+-- 啟用後，後續的SQL語法 不執行，只會產生文字執行計畫
+-- SET SHOWPLAN_ALL (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/statements/set-showplan-all-transact-sql
+-- Causes Microsoft SQL Server not to execute Transact-SQL statements. 
+-- Instead, SQL Server returns detailed information about how the statements are executed and provides estimates of the resource requirements for the statements.
+
 
 
 SET SHOWPLAN_TEXT ON;
 GO
--- 不執行
---SET SHOWPLAN_TEXT (Transact-SQL)
---https://msdn.microsoft.com/en-us/library/ms176058.aspx
---When SET SHOWPLAN_TEXT is ON, SQL Server returns execution information for each Transact-SQL statement without executing it. 
+-- 啟用後，後續的SQL語法 不執行
+-- SET SHOWPLAN_TEXT (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/statements/set-showplan-text-transact-sql
+-- Causes Microsoft SQL Server not to execute Transact-SQL statements. Instead, SQL Server returns detailed information about how the statements are executed.
+-- When SET SHOWPLAN_TEXT is ON, SQL Server returns execution information for each Transact-SQL statement without executing it. 
 
 
 
 SET STATISTICS PROFILE ON;
 GO
---SET STATISTICS PROFILE (Transact-SQL)
---https://msdn.microsoft.com/en-us/library/ms188752.aspx
---When STATISTICS PROFILE is ON, each executed query returns its regular result set, followed by an additional result set that shows a profile of the query execution.
+-- 啟用後，後續的SQL語法 會執行
+-- SET STATISTICS PROFILE (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/statements/set-statistics-profile-transact-sql
+-- When STATISTICS PROFILE is ON, each executed query returns its regular result set, followed by an additional result set that shows a profile of the query execution.
 
 
 

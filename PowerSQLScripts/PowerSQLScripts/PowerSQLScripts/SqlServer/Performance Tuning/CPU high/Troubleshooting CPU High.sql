@@ -37,6 +37,27 @@ order by req.cpu_time DESC
 GO
 
 
+-- 含執行計畫
+SELECT TOP 20 req.session_id,se.
+[program_name],se.[host_name],
+req.cpu_time,req.start_time,
+req.status,req.wait_type,
+req.command,
+req.blocking_session_id,
+sqltext.text as [Parent Query],
+SUBSTRING(sqltext.text, req.statement_start_offset / 2, (CASE
+    WHEN req.statement_end_offset = -1 THEN LEN(CONVERT(nvarchar(max), sqltext.text)) * 2
+    ELSE req.statement_end_offset
+  END - req.statement_start_offset) / 2) as  [Individual Query],
+execPlan.query_plan
+from sys.dm_exec_requests req
+inner join sys.dm_exec_sessions se on req.session_id = se.session_id
+CROSS APPLY sys.dm_exec_sql_text(req.sql_handle) AS sqltext
+CROSS APPLY sys.dm_exec_query_plan(req.plan_handle) as execPlan
+order by req.cpu_time DESC
+GO
+
+
 
 -- Poor API cursor
 -- concurrent session using poor API cursor

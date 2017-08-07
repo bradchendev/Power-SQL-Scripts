@@ -3,6 +3,7 @@
 -- https://github.com/bradchendev/Power-SQL-Scripts
 -- https://blogs.msdn.microsoft.com/bradchen/
 -- Create date: 2017/8/1
+-- Modify Date: 2017/8/3
 -- Description:	SP for List All Db Role and Member by Db User
 -- =============================================
 
@@ -17,28 +18,27 @@ GO
 
 
 -- @Limit 一頁多少筆
--- EXEC [dbo].[uspGetDbRoleByDbUser2] @DB = 'AdventureWorks2008R2' ,@Sort = 'DBRole', @DBUser = 'CONTOSO\bradchen', @Order = 'DESC', @Offset = 0, @Limit = 10
--- EXEC [dbo].[uspGetDbRoleByDbUser2] @DB = 'AdventureWorks2008R2' ,@Sort = 'DBRole', @Order = 'DESC', @Offset = 0, @Limit = 10
--- EXEC [dbo].[uspGetDbRoleByDbUser2] @DB = 'AdventureWorks2008R2' ,@Sort = 'Member', @Order = 'DESC', @Offset = 0, @Limit = 10
--- EXEC [dbo].[uspGetDbRoleByDbUser2] @DB = 'AdventureWorks2008R2' ,@Sort = 'DB', @Order = 'DESC', @Offset = 0, @Limit = 10
+-- EXEC [dbo].[uspGetDbRoleMember] @DB = 'AdventureWorks2008R2', @DBRole = 'db_datareader',@Sort = 'DBRole', @Order = 'DESC', @Offset = 0, @Limit = 10
+-- EXEC [dbo].[uspGetDbRoleMember] @DB = 'AdventureWorks2008R2',  @DBUser= 'CONTOSO\bradchen',@Sort = 'DBRole', @Order = 'DESC', @Offset = 0, @Limit = 10
 
-ALTER PROCEDURE [dbo].[uspGetDbRoleMemberByDbUser]
+ALTER PROCEDURE [dbo].[uspGetDbRoleMember]
 @DB sysname,
+@DBRole sysname = null,
 @DBUser sysname = null,
 @Sort varchar(30), -- Sort column name
 @Order varchar(5), -- DESC / ASC
 @Offset int,
 @Limit int
 AS
-DECLARE @_DB sysname, @_DBUser sysname, @_Sort varchar(30), @_Order varchar(5), @_Offset int, @_Limit int
+DECLARE @_DB sysname, @_DBRole sysname, @_DBUser sysname, @_Sort varchar(30), @_Order varchar(5), @_Offset int, @_Limit int
 
 SET @_DB = @DB;
+SET @_DBRole = @DBRole;
 SET @_DBUser = @DBUser;
 SET @_Sort = @Sort;
 SET @_Order = @Order;
 SET @_Offset = @Offset + 1;
 SET @_Limit = @Limit + @Offset;
-
 
 DECLARE @sqlcmd nvarchar(2000);
 
@@ -53,7 +53,10 @@ BEGIN
 END;
 
 if @_DBUser is not null
-	SET @Where = N' AND DRMP.name = ''' + @_DBUser + '''';
+	SET @Where = @Where + N' AND DRMP.name = ''' + @_DBUser + '''';
+
+if @_DBRole is not null
+	SET @Where = @Where + N' AND DRP.name = ''' + @_DBRole + '''';
 
 
 SET @sqlcmd = 
@@ -82,9 +85,5 @@ SELECT * FROM
 ) AS A2
 WHERE RankNumber BETWEEN ' + CAST( @_Offset as varchar(20) ) + N' AND ' + CAST( @_Limit as varchar(20) )
 	
-	
 -- PRINT @sqlcmd
 	EXEC(@sqlcmd)
-
-
-
