@@ -8,6 +8,27 @@
 -- https://docs.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql
 -- =============================================
 
+
+
+--To create a primary key in a new table
+USE AdventureWorks2012;  
+GO  
+CREATE TABLE Production.TransactionHistoryArchive1  
+(  
+   TransactionID int NOT NULL,  
+   CONSTRAINT PK_TransactionHistoryArchive_TransactionID PRIMARY KEY CLUSTERED (TransactionID)  
+);  
+GO
+
+--To create a primary key in an existing table
+USE AdventureWorks2012;  
+GO  
+ALTER TABLE Production.TransactionHistoryArchive   
+ADD CONSTRAINT PK_TransactionHistoryArchive_TransactionID PRIMARY KEY CLUSTERED (TransactionID);  
+GO  
+
+
+
 -- 資料表_建立相同schema資料表
 CREATE TABLE [dbo].[Table_4]
 (

@@ -167,6 +167,8 @@
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRolePermissionByDbRole.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRoleMember.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\SQL Nexus Tool.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspAddRoleMember.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspAddRolePermission.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
@@ -206,5 +208,6 @@
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML ReadTrace Install.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML_ReadTrace.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML_ReadTrace_Import.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRolePermissionByDbRole2.sql" />
   </ItemGroup>
 </Project>
