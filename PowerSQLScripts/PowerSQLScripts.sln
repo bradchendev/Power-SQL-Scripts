@@ -30,6 +30,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schedule", "Schedule", "{6C
 		Schedule_Solution.txt = Schedule_Solution.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux", "Linux", "{F57D662A-4739-41F7-B2D9-A075CA994B2A}"
+	ProjectSection(SolutionItems) = preProject
+		nginx.txt = nginx.txt
+		Process_service.txt = Process_service.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +58,6 @@ Global
 		{CA57307A-7D58-48BB-824D-9052B1AF5996} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 		{E62A2267-CDA6-42D3-B452-B48DBC6C51FA} = {7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}
 		{6C49E4E0-77DC-4111-A14C-B416C49989D9} = {7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}
+		{F57D662A-4739-41F7-B2D9-A075CA994B2A} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 	EndGlobalSection
 EndGlobal

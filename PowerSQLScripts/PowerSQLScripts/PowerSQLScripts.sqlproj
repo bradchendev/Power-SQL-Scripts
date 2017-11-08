@@ -102,6 +102,10 @@
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace" />
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Latency" />
+    <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\Stored Procedure" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\Connection" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Mirroring" />
+    <Folder Include="PowerSQLScripts\SqlServer\04_Database\Isolation Level" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -175,6 +179,10 @@
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Latency\Replication Latency.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Latency\usp_getDistAgentProcessHistory.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Latency\usp_getLogReaderProcessHistory.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Stored Procedure\Return Data from a Stored Procedure.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\Connection\LimitConnectionByLogin.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Mirroring\MirroringConfigurations.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Mirroring\Troubleshooting.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
@@ -215,5 +223,6 @@
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML_ReadTrace.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Nexus Tool\RML ReadTrace\RML_ReadTrace_Import.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Role\uspGetDbRolePermissionByDbRole2.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Isolation Level\Row Versioning-based Isolation Levels.sql" />
   </ItemGroup>
 </Project>

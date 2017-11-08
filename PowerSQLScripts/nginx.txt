@@ -1,0 +1,140 @@
+
+1.
+Check if Nginx is Running
+service nginx status
+
+[root@server.nginxtips.com:~]service nginx status
+nginx (pid  12249) is running...
+
+2.檢查ps比較準確
+Another way to check the status is:
+ps -aux | grep nginx
+
+
+
+
+
+# Starting, Stopping, and Restarting NGINX
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/commandline/
+
+Stopping or Restarting NGINX
+方法一
+/usr/bin/nginx -s stop
+方法二
+kill -QUIT $( cat /usr/local/nginx/logs/nginx.pid )
+
+
+
+
+Basic Example of Starting NGINX
+/usr/bin/nginx
+Advanced Example of Starting NGINX
+
+/usr/bin/nginx -t -c ~/mynginx.conf -g "pid /var/run/nginx.pid; worker_processes 2;"
+Options
+
+-?, -h	Print help.
+-v	Print version.
+-V	Print NGINX version, compiler version and configure parameters.
+-t	Don’t run, just test the configuration file. NGINX checks configuration for correct syntax and then try to open files referred in configuration.
+-q	Suppress non-error messages during configuration testing.
+-s signal	Send signal to a master process: stop, quit, reopen, reload. (version >= 0.7.53)
+-p prefix	Set prefix path (default: /usr/local/nginx/). (version >= 0.7.53)
+-c filename	Specify which configuration file NGINX should use instead of the default.
+-g directives	Set global directives. (version >= 0.7.4)
+
+
+
+To view status of your server
+
+Use any one of the following command:
+sudo service status nginx
+
+## OR ##
+sudo systemctl status nginx
+
+
+
+
+
+
+The nginx web server can be restarted using any one of the following command line syntax. Use systemctl on systemd based version such as Ubuntu Linux 16.04LTS and above:
+sudo systemctl restart nginx
+
+OR
+sudo service nginx restart
+
+OR (older Ubuntu Linux version):
+sudo /etc/init.d/nginx restart
+
+The same commands can be used to start / stop / restart the nginx server on a Ubuntu Linux:
+
+sudo systemctl start nginx 
+sudo systemctl stop nginx 
+sudo systemctl restart nginx
+OR
+
+sudo service nginx start
+sudo service nginx stop
+sudo service nginx restart
+OR
+
+sudo /etc/init.d/nginx start
+sudo /etc/init.d/nginx stop
+sudo /etc/init.d/nginx restart
+
+
+
+
+
+A note about reload nginx server
+
+It is also possible to use the following syntax to reload nginx server after you made changes to the config file such as nginx.conf:
+sudo nginx -s reload
+
+OR
+sudo systemctl reload nginx
+
+OR
+sudo service nginx reload
+
+
+
+
+
+Dealing with error messages on screen
+
+If the nginx server failed to start or stop or restart, check for the syntax error:
+
+nginx -t
+## OR set path to config file and test for the errors ##
+nginx -c /etc/nginx/nginx.conf -t
+
+
+
+
+
+The following error indicate that the username “nginxf” does not exists on line # 2:
+nginx: [emerg] getpwnam(“nginxf”) failed in /etc/nginx/nginx.conf:2
+To fix this error, edit the file with a text editor such as vi/vim/joe etc:
+
+sudo vi /etc/nginx/nginx.conf
+ 
+## or edit and jump to line no. 2 ###
+sudo vi +2 /etc/nginx/nginx.conf
+Update config file. Save and close the file. Test is again:
+
+nginx -t
+I also recommend that you check for nginx server log files for more info:
+
+sudo tail -f /var/log/nginx/error.log 
+2015/03/19 02:49:30 [emerg] 43130#0: getpwnam("nginxf") failed in /etc/nginx/nginx.conf:2
+2015/03/19 02:49:44 [emerg] 43145#0: getpwnam("nginxf") failed in /etc/nginx/nginx.conf:2
+It is also possible to use the systemd systemctl and journalctl commands for details on errors:
+$ sudo systemctl status nginx.service
+$ sudo journalctl -xe
+
+
+
+
+

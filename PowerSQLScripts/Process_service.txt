@@ -1,0 +1,38 @@
+
+
+
+# service command ¡V list running services
+service --status-all
+service --status-all | more
+service --status-all | grep ntpd
+service --status-all | less
+
+
+# service status
+service httpd status
+
+
+# List all known services (configured via SysV)
+chkconfig --list
+
+
+# List service and their open ports
+netstat -tulpn
+
+
+
+# To list systemd services on CentOS/RHEL 7.x+ use
+# The syntax is:
+systemctl
+systemctl | more
+systemctl | grep httpd
+systemctl list-units --type service
+systemctl list-units --type mount
+
+
+# To list all services:
+systemctl list-unit-files
+
+
+# To view processes associated with a particular service (cgroup), you can use the systemd-cgtop command. Like the top command, systemd-cgtop lists running processes based on their service:
+systemd-cgtop
