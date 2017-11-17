@@ -183,6 +183,7 @@
     <None Include="PowerSQLScripts\SqlServer\Security\Connection\LimitConnectionByLogin.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Mirroring\MirroringConfigurations.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Mirroring\Troubleshooting.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Profiler and Trace\SQLTrace Collection\05-2.Manual Import trc.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />

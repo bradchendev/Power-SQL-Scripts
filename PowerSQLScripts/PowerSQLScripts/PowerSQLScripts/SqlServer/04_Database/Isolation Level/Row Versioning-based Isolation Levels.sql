@@ -30,6 +30,29 @@ ALTER DATABASE AdventureWorks2008R2
 ALTER DATABASE AdventureWorks2008R2
     SET ALLOW_SNAPSHOT_ISOLATION ON;
 
+-- ALTER DATABASE啟用時，可能會遇到有session正在使用DB，既使這個session已經sleeping
+-- 已下面這個案例 session_id 57已經sleeping
+-- 通常需要中斷所有連線才能啟用成功
+select 
+req.session_id, req.status, req.wait_type, req.wait_resource, req.blocking_session_id
+ from sys.dm_exec_sessions se inner join sys.dm_exec_connections con on se.session_id = con.session_id
+inner join sys.dm_exec_requests req on req.session_id = se.session_id where se.session_id = 63
+
+--session_id	status	wait_type	wait_resource	blocking_session_id
+--63	suspended	LCK_M_X	DATABASE: 43 	57
+
+-- 此時可以等待連線都idle到一定時間(Connection pool約8分鐘)後自動中斷，才能執行ALTER DATABASE
+-- 或是執行時加上WITH ROLLBACK IMMEDIATE直接中斷連線。
+ALTER DATABASE TWDALSYS
+    SET READ_COMMITTED_SNAPSHOT ON
+	WITH ROLLBACK IMMEDIATE; 
+-- Nonqualified transactions are being rolled back. Estimated rollback completion: 100%.
+
+
+-- ALTER DATABASE SET Options (Transact-SQL)
+-- https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-database-transact-sql-set-options
+
+
 -- Choosing Row Versioning-based Isolation Levels
 -- https://technet.microsoft.com/en-us/library/ms188277(v=sql.105).aspx
 
