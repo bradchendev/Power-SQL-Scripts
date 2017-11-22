@@ -19,6 +19,7 @@ set transaction isolation level read uncommitted
 -- Baisc query for current requests and session
 select 
 se.session_id, 
+req.blocking_session_id,
 se.status,
 req.status,
 req.wait_type,
