@@ -1,0 +1,9 @@
+﻿
+' Adding Comments to a Script
+' Microsoft® Windows® 2000 Scripting Guide
+REM https://technet.microsoft.com/en-us/library/ee176797.aspx
+
+
+' For example, both of the following lines of code are valid comments:
+' This is a comment using a single quote delimiter.
+REM This is a comment using the REM statement as a delimiter.
