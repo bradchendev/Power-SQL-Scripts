@@ -15,28 +15,29 @@
 -- =============================================
 
 
-EXEC DBA.dbo.GenCloneLoginAndAllDBPerms
+EXEC DBA.dbo.CloneLoginAndAllDBPerms
   @NewLogin = 'BradTestUser',
   @NewLoginPwd = 'SomeOtherPassw0rd!',
-  @LoginToClone = 'Bobby', -- clone from which login
-  @WindowsLogin = 'F'; -- F for SQL Login, T for Windows Login
-
+  @LoginToClone = 'AppUser1', -- clone from which login
+  @WindowsLogin = 'F', -- F for SQL Login, T for Windows Login
+  @OnlyGenSQL = 1
 
 
 USE [DBA]
 GO
-/****** Object:  StoredProcedure [dbo].[GenCloneLogin]    Script Date: 03/13/2018 14:56:27 ******/
+/****** Object:  StoredProcedure [dbo].[CloneLogin]    Script Date: 03/13/2018 15:34:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- Create By Brad Chen
 
-CREATE PROCEDURE [dbo].[GenCloneLogin]
+CREATE PROCEDURE [dbo].[CloneLogin]
   @NewLogin sysname,
   @NewLoginPwd NVARCHAR(MAX),
   @WindowsLogin CHAR(1),
-  @LoginToClone sysname
+  @LoginToClone sysname,
+  @OnlyGenSQL bit 
 AS BEGIN
 
 	SET NOCOUNT ON;
@@ -52,15 +53,17 @@ AS BEGIN
     BEGIN TRAN;
 
 	PRINT @SQL;
-	EXEC @Return = sp_executesql @SQL;
-
-	IF (@Return <> 0)
+	IF @OnlyGenSQL = 0
 	BEGIN
-	  ROLLBACK TRAN;
-	  RAISERROR('Error encountered creating login', 16, 1);
-	  RETURN(1);
+		EXEC @Return = sp_executesql @SQL;
+	
+		IF (@Return <> 0)
+		BEGIN
+		  ROLLBACK TRAN;
+		  RAISERROR('Error encountered creating login', 16, 1);
+		  RETURN(1);
+		END
 	END
-
 
 	-- Query to handle server roles
 	DECLARE cursRoleMemberSQL CURSOR FAST_FORWARD
@@ -80,18 +83,23 @@ AS BEGIN
 
 	WHILE (@@FETCH_STATUS = 0)
 	BEGIN
+	
 	  PRINT @SQL;
-	  EXECUTE @Return = sp_executesql @SQL;
-
-	  IF (@Return <> 0)
+	  
+	  	IF @OnlyGenSQL = 0
 		BEGIN
-		  ROLLBACK TRAN;
-		  RAISERROR('Error encountered assigning role memberships.', 16, 1);
-		  CLOSE cursRoleMembersSQL;
-		  DEALLOCATE cursRoleMembersSQL;
-		  RETURN(1);
-		END
+		  EXECUTE @Return = sp_executesql @SQL;
 
+		  IF (@Return <> 0)
+			BEGIN
+			  ROLLBACK TRAN;
+			  RAISERROR('Error encountered assigning role memberships.', 16, 1);
+			  CLOSE cursRoleMembersSQL;
+			  DEALLOCATE cursRoleMembersSQL;
+			  RETURN(1);
+			END
+		END
+	
 	  FETCH NEXT FROM cursRoleMemberSQL INTO @SQL;
 	END;
 
@@ -149,17 +157,21 @@ AS BEGIN
 	WHILE (@@FETCH_STATUS = 0)
 	BEGIN
 		PRINT @SQL;
-		EXEC @Return = sp_executesql @SQL;
-
-		IF (@Return <> 0)
+		
+		IF @OnlyGenSQL = 0
 		BEGIN
-		  ROLLBACK TRAN;
-		  RAISERROR('Error encountered adding server level permissions', 16, 1);
-		  CLOSE cursServerPermissionSQL;
-		  DEALLOCATE cursServerPermissionSQL;
-		  RETURN(1);
-		END
+			EXEC @Return = sp_executesql @SQL;
 
+			IF (@Return <> 0)
+			BEGIN
+			  ROLLBACK TRAN;
+			  RAISERROR('Error encountered adding server level permissions', 16, 1);
+			  CLOSE cursServerPermissionSQL;
+			  DEALLOCATE cursServerPermissionSQL;
+			  RETURN(1);
+			END
+		END
+		
 		FETCH NEXT FROM cursServerPermissionSQL INTO @SQL;
 	END;
 
@@ -167,21 +179,25 @@ AS BEGIN
 	DEALLOCATE cursServerPermissionSQL;
 
 	COMMIT TRAN;
-
-	PRINT 'Login [' + @NewLogin + '] cloned successfully from [' + @LoginToClone + '].';
+	
+	IF @OnlyGenSQL = 0
+		PRINT 'Login [' + @NewLogin + '] cloned successfully from [' + @LoginToClone + '].';
+	ELSE
+		PRINT 'Generate SQL Script for Login [' + @NewLogin + '] cloned from [' + @LoginToClone + '] Successfully.';		
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[GenCloneDBPerms]    Script Date: 03/13/2018 14:56:27 ******/
+/****** Object:  StoredProcedure [dbo].[CloneDBPerms]    Script Date: 03/13/2018 15:34:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- Create By Brad Chen
 
-CREATE PROC [dbo].[GenCloneDBPerms]
+CREATE PROC [dbo].[CloneDBPerms]
   @NewLogin sysname,
   @LoginToClone sysname,
-  @DBName sysname
+  @DBName sysname,
+  @OnlyGenSQL bit 
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -406,18 +422,23 @@ BEGIN
 	BEGIN
 	  SET @SQL = 'USE [' + @DBName + ']; ' + @SQL;
 
-	  PRINT @SQL;
-	  EXEC @Return = sp_executesql @SQL;
+		PRINT @SQL;
+		
+		IF @OnlyGenSQL = 0
+		BEGIN
 
-	  IF (@Return <> 0)
-	  BEGIN
-		  ROLLBACK TRAN;
-		  RAISERROR('Error granting permission', 16, 1);
-		  CLOSE cursDBPermsSQL;
-		  DEALLOCATE cursDBPermsSQL;
-		  RETURN(1);
-	  END;
+		  EXEC @Return = sp_executesql @SQL;
 
+		  IF (@Return <> 0)
+		  BEGIN
+			  ROLLBACK TRAN;
+			  RAISERROR('Error granting permission', 16, 1);
+			  CLOSE cursDBPermsSQL;
+			  DEALLOCATE cursDBPermsSQL;
+			  RETURN(1);
+		  END;
+		END;
+	
 	  FETCH NEXT FROM cursDBPermsSQL INTO @SQL;
 	END;
 
@@ -426,17 +447,18 @@ BEGIN
 	DROP TABLE #DBPermissionsTSQL;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[GenGrantUserRoleMembership]    Script Date: 03/13/2018 14:56:27 ******/
+/****** Object:  StoredProcedure [dbo].[GrantUserRoleMembership]    Script Date: 03/13/2018 15:34:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- Create By Brad Chen
 
-CREATE PROC [dbo].[GenGrantUserRoleMembership]
+CREATE PROC [dbo].[GrantUserRoleMembership]
   @NewLogin sysname,
   @LoginToClone sysname,
-  @DBName sysname
+  @DBName sysname,
+  @OnlyGenSQL bit 
 AS
 BEGIN
   SET NOCOUNT ON;
@@ -482,16 +504,23 @@ BEGIN
   WHILE (@@FETCH_STATUS = 0)
     BEGIN
 	  SET @TSQL = 'USE [' + @DBName + ']; ' + @TSQL;
-      EXECUTE @Return = sp_executesql @TSQL;
+	  
+		PRINT @TSQL;
+		
+		IF @OnlyGenSQL = 0
+		BEGIN
+		
+		  EXECUTE @Return = sp_executesql @TSQL;
 
-      IF (@RETURN <> 0)
-        BEGIN
-          ROLLBACK TRAN;
-	      RAISERROR('Error encountered assigning DB role memberships.', 16, 1);
-		  CLOSE cursDBRoleMembersSQL;
-		  DEALLOCATE cursDBRoleMembersSQL;
-        END;
-
+		  IF (@RETURN <> 0)
+			BEGIN
+			  ROLLBACK TRAN;
+			  RAISERROR('Error encountered assigning DB role memberships.', 16, 1);
+			  CLOSE cursDBRoleMembersSQL;
+			  DEALLOCATE cursDBRoleMembersSQL;
+			END;
+		END;
+	
       FETCH NEXT FROM cursDBRoleMembersSQL INTO @TSQL;
     END;
 
@@ -503,17 +532,18 @@ BEGIN
   COMMIT TRAN;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[GenCreateUserInDB]    Script Date: 03/13/2018 14:56:27 ******/
+/****** Object:  StoredProcedure [dbo].[CreateUserInDB]    Script Date: 03/13/2018 15:34:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- Create By Brad Chen
 
-CREATE PROC [dbo].[GenCreateUserInDB]
+CREATE PROC [dbo].[CreateUserInDB]
   @NewLogin sysname,
   @LoginToClone sysname,
-  @DBName sysname
+  @DBName sysname,
+  @OnlyGenSQL bit 
 AS
 BEGIN
   SET NOCOUNT ON;
@@ -528,30 +558,35 @@ BEGIN
                  BEGIN
 				   CREATE USER [' + @NewLogin + '] FROM LOGIN [' + @NewLogin + '];
 				 END;';
-  EXEC @Return = sp_executesql @TSQL;
+	PRINT @TSQL;
+	IF @OnlyGenSQL = 0
+	BEGIN
+	  EXEC @Return = sp_executesql @TSQL;
 
-  IF (@Return <> 0)
-    BEGIN
-	  ROLLBACK TRAN;
-	  RAISERROR('Error creating user', 16, 1);
-	  RETURN(1);
+	  IF (@Return <> 0)
+		BEGIN
+		  ROLLBACK TRAN;
+		  RAISERROR('Error creating user', 16, 1);
+		  RETURN(1);
+		END;
 	END;
 
   COMMIT TRAN;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[GenCloneLoginAndAllDBPerms]    Script Date: 03/13/2018 14:56:27 ******/
+/****** Object:  StoredProcedure [dbo].[CloneLoginAndAllDBPerms]    Script Date: 03/13/2018 15:34:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- Create By Brad Chen
 
-CREATE PROC [dbo].[GenCloneLoginAndAllDBPerms]
+CREATE PROC [dbo].[CloneLoginAndAllDBPerms]
   @NewLogin sysname,
   @NewLoginPwd NVARCHAR(MAX),
   @WindowsLogin CHAR(1),
-  @LoginToClone sysname
+  @LoginToClone sysname,
+  @OnlyGenSQL bit 
 AS
 BEGIN
   SET NOCOUNT ON;
@@ -560,11 +595,12 @@ BEGIN
 
   BEGIN TRAN;
 
-  EXEC @Return = DBA.dbo.GenCloneLogin 
+  EXEC @Return = DBA.dbo.CloneLogin 
     @NewLogin = @NewLogin, 
 	@NewLoginPwd = @NewLoginPwd, 
 	@WindowsLogin = @WindowsLogin, 
-	@LoginToClone = @LoginToClone;
+	@LoginToClone = @LoginToClone,
+	@OnlyGenSQL = @OnlyGenSQL;
 
   IF (@Return <> 0)
 	BEGIN
@@ -588,10 +624,11 @@ BEGIN
 
   WHILE (@@FETCH_STATUS = 0)
   BEGIN
-    EXEC @Return = DBA.dbo.GenCreateUserInDB 
+    EXEC @Return = DBA.dbo.CreateUserInDB 
 	  @NewLogin = @NewLogin, 
 	  @LoginToClone = @LoginToClone, 
-	  @DBName = @DBName;
+	  @DBName = @DBName,
+      @OnlyGenSQL = @OnlyGenSQL;
 
 	IF (@Return <> 0)
 	BEGIN
@@ -600,10 +637,11 @@ BEGIN
 	  RETURN(1);
 	END;
 
-	EXEC @Return = DBA.dbo.GenGrantUserRoleMembership
+	EXEC @Return = DBA.dbo.GrantUserRoleMembership
 	  @NewLogin = @NewLogin, 
 	  @LoginToClone = @LoginToClone, 
-	  @DBName = @DBName;
+	  @DBName = @DBName,
+      @OnlyGenSQL = @OnlyGenSQL;
 
 	IF (@Return <> 0)
 	BEGIN
@@ -612,10 +650,11 @@ BEGIN
 	  RETURN(1);
 	END;
 
-	EXEC @Return = DBA.dbo.GenCloneDBPerms
+	EXEC @Return = DBA.dbo.CloneDBPerms
 	  @NewLogin = @NewLogin, 
 	  @LoginToClone = @LoginToClone, 
-	  @DBName = @DBName;
+	  @DBName = @DBName,
+      @OnlyGenSQL = @OnlyGenSQL;
 
 	IF (@Return <> 0)
 	BEGIN
