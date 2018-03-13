@@ -5,6 +5,9 @@
 -- Create date: 2018/3/13
 -- Description:	Clone SQL Login, User and Permission
 
+	-- Modify by follow url, fix bug about cannot file object
+	-- add schema_name fuction and USE Database to script
+
 	--How to Clone a SQL Server Login, Part 1 of 3
 	--https://www.mssqltips.com/sqlservertip/3589/how-to-clone-a-sql-server-login-part-1-of-3/
 	--How to Clone a SQL Server Login, Part 2 of 3
@@ -258,11 +261,11 @@ BEGIN
 		RETURN(1);
 	END
 
-	SET @SQL = 'INSERT INTO #DBPermissionsTSQL (PermsTSQL) 
+	SET @SQL = 'USE [' + @DBName + ']; INSERT INTO #DBPermissionsTSQL (PermsTSQL) 
 	SELECT CASE [state]
-	   WHEN ''W'' THEN ''GRANT '' + permission_name + '' ON OBJECT::['' 
+	   WHEN ''W'' THEN ''GRANT '' + permission_name + '' ON OBJECT::['' + SCHEMA_NAME(O.schema_id) +''].[''  
 		 + O.name + ''] TO [' + @NewLogin + '] WITH GRANT OPTION;'' COLLATE DATABASE_DEFAULT
-	   ELSE state_desc + '' '' + permission_name + '' ON OBJECT::['' 
+	   ELSE state_desc + '' '' + permission_name + '' ON OBJECT::['' + SCHEMA_NAME(O.schema_id) +''].['' 
 		 + O.name + ''] TO [' + @NewLogin + '];'' COLLATE DATABASE_DEFAULT
 	   END AS ''Permission''
 	FROM [' + @DBName + '].sys.database_permissions AS P
@@ -284,12 +287,12 @@ BEGIN
 		RETURN(1);
 	END
 
-	SET @SQL = 'INSERT INTO #DBPermissionsTSQL (PermsTSQL)
+	SET @SQL = 'USE [' + @DBName + ']; INSERT INTO #DBPermissionsTSQL (PermsTSQL)
 	SELECT CASE [state]
-	   WHEN ''W'' THEN ''GRANT '' + permission_name + '' ON OBJECT::['' 
+	   WHEN ''W'' THEN ''GRANT '' + permission_name + '' ON OBJECT::['' + SCHEMA_NAME(O.schema_id) +''].['' 
 		 + O.name + ''] ('' + C.name + '') TO [' + @NewLogin + '] WITH GRANT OPTION;'' 
 		 COLLATE DATABASE_DEFAULT
-	   ELSE state_desc + '' '' + permission_name + '' ON OBJECT::['' 
+	   ELSE state_desc + '' '' + permission_name + '' ON OBJECT::['' + SCHEMA_NAME(O.schema_id) +''].['' 
 		 + O.name + ''] ('' + C.name + '') TO [' + @NewLogin + '];'' 
 		 COLLATE DATABASE_DEFAULT
 	   END AS ''Permission''
