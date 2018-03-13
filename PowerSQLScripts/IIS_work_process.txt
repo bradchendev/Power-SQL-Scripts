@@ -1,0 +1,46 @@
+
+正在執行中的Session
+
+
+1.Worker Processes (AppPool對應的w3wp.exe)
+2.Current Requests (每個AppPool正在執行的Request)
+
+
+1.Worker Processes
+如何檢視 IIS7 各工作者處理序正在執行的要求列表
+https://blog.miniasp.com/post/2010/02/12/IIS7-View-Currently-Executing-Requests-in-a-Worker-Process.aspx
+
+View a List of Worker Processes (IIS 7)
+https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771273(v=ws.10)
+
+To view a list of worker processes, use the following syntax:
+appcmd list wps
+
+UI
+1.Open IIS Manager. For information about opening IIS Manager, see Open IIS Manager (IIS 7). For information about navigating to locations in the UI, see Navigation in IIS Manager (IIS 7).
+2.In the Connections pane, select the server node in the tree.
+3.In Features View, double-click Worker Processes.
+4.View the list of worker processes in the grid.
+
+
+
+2.Request
+查詢工作者處理序((Worker Process)正在執行哪些頁面(Executing Requests)
+appcmd list requests
+appcmd list requests /apppool.name:DefaultAppPool
+
+https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc732518(v=ws.10)
+To Use the UI
+1.Open IIS Manager. For information about opening IIS Manager, see Open IIS Manager (IIS 7). For information about navigating to locations in the UI, see Navigation in IIS Manager (IIS 7).
+2.In the Connections pane, select the server node in the tree.
+3.In Features View, double-click Worker Processes.
+4.Select a worker process from the grid.
+5.Click View Current Requests in the Actions pane.
+6.View the list of requests in the grid.
+
+Ps.Feature需要勾選
+Server Manager -> Add Roles.
+	Web Server (IIS)
+		Web Server
+			Health and Diagnostics
+				Request Monitor

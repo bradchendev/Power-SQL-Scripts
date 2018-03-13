@@ -1,0 +1,15 @@
+How to analyse IIS logs using LogParser / LogParser Studio
+avatar of friismicrosoft-comfriis[at]microsoft.comFebruary 6, 2014
+https://blogs.msdn.microsoft.com/friis/2014/02/06/how-to-analyse-iis-logs-using-logparser-logparser-studio/
+
+Log Parser Studio
+https://gallery.technet.microsoft.com/Log-Parser-Studio-cd458765
+
+
+
+SELECT 
+ date, time, c-ip, s-computername, s-ip, s-port,cs-uri-stem, cs-host 
+FROM '[LOGFILEPATH]' 
+WHERE [cs-uri-stem] like '%GetMyDataRequest%'
+and [cs-host] <> 'client1.contoso.com'
+order by [time]
