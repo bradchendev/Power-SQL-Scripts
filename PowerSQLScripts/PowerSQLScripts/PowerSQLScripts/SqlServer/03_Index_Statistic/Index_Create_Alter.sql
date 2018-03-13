@@ -9,6 +9,21 @@
 
 -- =============================================
 
+/*
+USE [AdventureWorks2008R2]
+GO
+CREATE NONCLUSTERED INDEX [IX_Orders_valid] 
+ON [dbo].[Orders] ([valid])
+    WITH (FILLFACTOR = 80,  
+        PAD_INDEX = ON,  
+        DROP_EXISTING = ON,
+        ONLINE = ON);  
+        
+GO
+*/
+
+
+
 -- Create a nonclustered index on a table or view  
 CREATE INDEX i1 ON t1 (col1);  
 

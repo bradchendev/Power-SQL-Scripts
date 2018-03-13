@@ -108,6 +108,7 @@
     <Folder Include="PowerSQLScripts\SqlServer\04_Database\Isolation Level" />
     <Folder Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection" />
+    <Folder Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -190,6 +191,7 @@
     <None Include="PowerSQLScripts\SqlServer\04_Database\Size\uspGetDiskFreeSizeSendemailtoDBA.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Stored Procedure\SP_Template.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Logins and Password\Password_Generator.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm\CloneLoginAndPerm.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />

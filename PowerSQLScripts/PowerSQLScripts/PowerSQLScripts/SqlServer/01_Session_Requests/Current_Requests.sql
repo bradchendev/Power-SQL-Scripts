@@ -38,8 +38,43 @@ from sys.dm_exec_sessions se
 inner Join sys.dm_exec_connections con on se.session_id=con.session_id and se.is_user_process = 1
 Left join sys.dm_exec_requests req on req.session_id = se.session_id
 CROSS APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
+--OUTER APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
 order by req.cpu_time DESC
 GO
+
+
+
+---- Baisc query for current requests and session 含沒有正在執行中的session與最後一次執行的SQL Query
+select 
+se.session_id, 
+req.blocking_session_id as [blocker],
+se.status as [se_status],
+req.status as [req_status],
+req.wait_type as [req_waitType],
+req.wait_time as [req_waitTime],
+se.host_name as [se_host],
+se.program_name as [se_prog],
+se.login_name,
+se.last_request_start_time,
+se.last_request_end_time,
+st.text as [req_ParentQuery],
+SUBSTRING(st.text, (req.statement_start_offset/2)+1,
+((CASE req.statement_end_offset
+WHEN -1 THEN DATALENGTH(st.text)
+ELSE req.statement_end_offset
+END - req.statement_start_offset)/2) + 1) AS req_Statement,
+st2.text as [con_most_recent_sql]
+from sys.dm_exec_sessions se
+inner Join sys.dm_exec_connections con on se.session_id=con.session_id and se.is_user_process = 1
+Left join sys.dm_exec_requests req on req.session_id = se.session_id
+OUTER APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
+OUTER APPLY sys.dm_exec_sql_text(con.most_recent_sql_handle) AS st2
+--CROSS APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
+order by req.cpu_time DESC
+GO
+
+
+
 
 -- 含執行計畫 Baisc query for current requests and session
 select 
