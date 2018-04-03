@@ -192,6 +192,7 @@
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Stored Procedure\SP_Template.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\Logins and Password\Password_Generator.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm\CloneLoginAndPerm.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm\Gen_UserDefinedTypeGrantSQL.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />

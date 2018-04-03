@@ -5,8 +5,11 @@
 -- Create date: 2018/3/13
 -- Description:	Clone SQL Login, User and Permission
 
-	-- Modify by follow url, fix bug about cannot file object
+	-- The sql script was modified from follow url
+	-- 1.fix bug 
+	-- about cannot file object
 	-- add schema_name fuction and USE Database to script
+	-- 2.maybe there is a bug about select specific column permission
 
 	--How to Clone a SQL Server Login, Part 1 of 3
 	--https://www.mssqltips.com/sqlservertip/3589/how-to-clone-a-sql-server-login-part-1-of-3/
@@ -14,7 +17,7 @@
 	--https://www.mssqltips.com/sqlservertip/3629/how-to-clone-a-sql-server-login-part-2-of-3/
 	--How to Clone a SQL Server Login, Part 3 of 3
 	--https://www.mssqltips.com/sqlservertip/3648/how-to-clone-a-sql-server-login-part-3-of-3/
-
+	
 -- =============================================
 
 
@@ -51,7 +54,9 @@ AS BEGIN
 	IF (@WindowsLogin = 'T')
 	  SET @SQL = 'CREATE LOGIN [' + @NewLogin + '] FROM WINDOWS;'
 	ELSE
-	  SET @SQL = 'CREATE LOGIN [' + @NewLogin + '] WITH PASSWORD = N''' + @NewLoginPwd + ''';';
+	  SET @SQL = 'CREATE LOGIN [' + @NewLogin + '] WITH PASSWORD = N''' + @NewLoginPwd + ''' CHECK_EXPIRATION = OFF,  CHECK_POLICY = OFF;';
+
+	  --SET @SQL = 'CREATE LOGIN [' + @NewLogin + '] WITH PASSWORD = N''' + @NewLoginPwd + ''';';
 
     BEGIN TRAN;
 

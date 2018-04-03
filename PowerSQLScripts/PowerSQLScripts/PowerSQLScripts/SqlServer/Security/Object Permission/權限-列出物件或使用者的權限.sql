@@ -28,19 +28,31 @@ SELECT
     --pr.authentication_type_desc, --only for sql 2012, 2014, 2016
     pe.state_desc, 
     pe.permission_name,
-    --pe.class_desc,
-    obj.[type_desc],
-    obj.name as [Object Name],
+    pe.class_desc,
+    
+    
+    CASE WHEN pe.class = 6 THEN 'UserDefinedType'
+    ELSE obj.[type_desc] END as [Object Type],
+    
+    CASE WHEN pe.class = 6 THEN udt.name
+    ELSE obj.name END as [Object Name],
+    
     CASE WHEN minor_id > 0 THEN col.[name] ELSE NULL END as [ifColumn],
     USER_NAME(pe.grantor_principal_id) as [grantor] -- if [grantor] = dbo, db_owner is grantor
 FROM 
 	sys.database_permissions AS pe  
 	JOIN sys.database_principals AS pr 
     ON pe.grantee_principal_id = pr.principal_id
-    JOIN sys.objects AS obj
+    LEFT JOIN sys.objects AS obj
     ON pe.major_id = obj.[object_id]
     LEFT JOIN sys.columns col
     ON pe.major_id = col.[object_id] and pe.minor_id = col.column_id
+	LEFT JOIN sys.types AS udt
+	ON pe.major_id = udt.[user_type_id]  -- User Defined Type
+ 
+ --where pr.name = 'DBUser1'
+     --and pe.class = 6 -- User Defined Type
+
 ORDER BY 
 	pr.type_desc, 
 	pr.name, 
