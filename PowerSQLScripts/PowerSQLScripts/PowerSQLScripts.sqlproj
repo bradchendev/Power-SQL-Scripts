@@ -115,7 +115,6 @@
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Create_Alter.sql" />
     <None Include="PowerSQLScripts\SqlServer\01_Session_Requests\Current_Requests.sql" />
     <None Include="PowerSQLScripts\SqlServer\ERRORLOG\ErrorLog.sql" />
-    <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Backup_Retore.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_List.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_Create_Alter.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\Index_Rebuild.sql" />
@@ -149,7 +148,7 @@
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Worker Threads.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Setup.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Distributor.sql" />
-    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Agent and Latency.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_Agent profile and Latency.sql" />
     <None Include="PowerSQLScripts\SqlServer\Server Configuration\DBCC TRACEON.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\鎖定資料表防止其他連線存取Lock table prevent from other session.sql" />
     <None Include="PowerSQLScripts\SqlServer\Linked Server\Linked Server List.sql" />
@@ -193,6 +192,9 @@
     <None Include="PowerSQLScripts\SqlServer\Security\Logins and Password\Password_Generator.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm\CloneLoginAndPerm.sql" />
     <None Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm\Gen_UserDefinedTypeGrantSQL.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\Disk Free Space and file exist.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Iteration.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\GenerateAllIndex.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
@@ -241,5 +243,6 @@
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection\Collect_worker_thread_usage_by_Requests.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection\uspCollectWorkthreadsStatus.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection\vwListSessionWithWorkerThreads.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore\DB_Backup_Retore.sql" />
   </ItemGroup>
 </Project>
