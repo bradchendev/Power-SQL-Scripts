@@ -94,9 +94,28 @@ where
 DeviceID = 1
 and PerformanceAnalysisCounterID = 71 -- PROCESS	PERCENT_PROCESSOR_TIME
 and [Timestamp] >= SQLSentry.dbo.fnConvertDateTimeToTimestamp(@startTime_utc)
+and [Timestamp] < SQLSentry.dbo.fnConvertDateTimeToTimestamp(@endTime_utc);
+
+
+WITH cte
+AS
+(
+select 
+DATEADD(HOUR,+8,SQLSentry.dbo.fnConvertTimestampToDateTime([Timestamp])) as [Time UTC plus 8],
+--SQLSentry.dbo.fnConvertTimestampToDateTime([Timestamp]) as [Time original UTC],
+CAST([value] as int)/60 as [CPU %]
+--*
+from SQLSentry.dbo.PerformanceAnalysisData
+where 
+DeviceID = 1
+and PerformanceAnalysisCounterID = 71 -- PROCESS	PERCENT_PROCESSOR_TIME
+and [Timestamp] >= SQLSentry.dbo.fnConvertDateTimeToTimestamp(@startTime_utc)
 and [Timestamp] < SQLSentry.dbo.fnConvertDateTimeToTimestamp(@endTime_utc)
-
-
+)
+select 
+AVG([CPU %]) as [Avg CPU %] 
+, MAX([CPU %]) as [Max CPU %] from cte 
+GO
 
 
 --22點30~33分

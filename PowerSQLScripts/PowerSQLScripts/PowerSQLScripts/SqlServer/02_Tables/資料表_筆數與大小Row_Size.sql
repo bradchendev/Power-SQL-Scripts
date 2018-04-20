@@ -51,6 +51,21 @@ AND (index_id=0 or index_id=1);
 
 
 
+-- All Table row_count
+USE AdventureWorks
+GO
+select [Schema],[Table], SUM(row_count) as [row_count] 
+from 
+(
+SELECT part.object_id,part.row_count, SCHEMA_NAME(tb.schema_id) as [Schema], tb.name as [Table]
+FROM sys.dm_db_partition_stats part
+inner join sys.tables tb
+on part.object_id = tb.object_id
+where (index_id=0 or index_id=1)
+) a
+group by [Schema],[Table]
+
+
 --大小
 --資料表大小
 --from standard report [Disk Usage by TOP Tables]

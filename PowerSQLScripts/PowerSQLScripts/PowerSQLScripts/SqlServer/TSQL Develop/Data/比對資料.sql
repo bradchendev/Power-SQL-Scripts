@@ -1,7 +1,4 @@
-﻿
-
-
--- =============================================
+﻿-- =============================================
 -- Author:		Brad Chen
 -- https://github.com/bradchendev/Power-SQL-Scripts
 -- https://blogs.msdn.microsoft.com/bradchen/
