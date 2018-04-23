@@ -109,6 +109,8 @@
     <Folder Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection" />
     <Folder Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm" />
+    <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\Data" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Tablediff" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -195,15 +197,16 @@
     <None Include="PowerSQLScripts\SqlServer\04_Database\Size\Disk Free Space and file exist.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Iteration.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\GenerateAllIndex.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\Remove Duplicate Rows.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\ROW_NUMBER.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\CheckSnapshotDistributionAgentInitialFinish.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Tablediff\Tablediff.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Current Login User.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\比對資料.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\把以點分隔的字串切割，放入每一筆資料.sql" />
@@ -244,5 +247,6 @@
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection\uspCollectWorkthreadsStatus.sql" />
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection\vwListSessionWithWorkerThreads.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore\DB_Backup_Retore.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\比對資料.sql" />
   </ItemGroup>
 </Project>
