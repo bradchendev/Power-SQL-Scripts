@@ -4,8 +4,16 @@
 -- https://blogs.msdn.microsoft.com/bradchen/
 -- Create date: 2017/7/11
 -- Description:	  SQL Sentry (Third-Party)
-
+-- 
 -- =============================================
+
+-- 保留最新72 hour (3天)的紀錄，min=查詢當下的utc時間往前推3天
+select 
+max(SQLSentry.dbo.fnConvertTimestampToDateTime([Timestamp]))
+, min(SQLSentry.dbo.fnConvertTimestampToDateTime([Timestamp])) 
+from SQLSentry.dbo.PerformanceAnalysisData
+
+
 
 --I Didn't Know it Could Do That! : Enabling Additional Performance Counters
 --https://blogs.sentryone.com/justinrandall/didnt-know-5-performance-counters/

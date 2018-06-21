@@ -1,0 +1,16 @@
+FOR /F "usebackq tokens=2 skip=2" %i IN (`tasklist /fi "IMAGENAME eq sqlservr.exe"`) DO "C:\Program Files\Microsoft SQL Server\110\Shared\SqlDumper.exe" %i 0 0x8100 0 C:\SQLDump
+
+
+
+1.產生SQL Server filter Dump
+右鍵>命令提示字元>以管理員管理員身分執行
+貼入以下命令，就會在J:\SQLDump\ 目錄下產生sql dump (因為目前觀察J磁碟空間較大，所以指定在此目錄)
+
+FOR /F "usebackq tokens=2 skip=2" %i IN (`tasklist /fi "IMAGENAME eq sqlservr.exe"`) DO "C:\Program Files\Microsoft SQL Server\110\Shared\SqlDumper.exe" %i 0 0x8100 0 J:\SQLDump
+
+
+2.產生Cluster Log
+右鍵>Windows PowerShell>以管理員管理員身分執行
+逐一貼入以下命令，就會在C:\Temp\目錄下產生所有節點的cluster log
+Import-Module FailoverClusters
+Get-ClusterLog -Destination C:\Temp\

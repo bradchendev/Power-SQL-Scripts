@@ -111,6 +111,7 @@
     <Folder Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm" />
     <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\Data" />
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Tablediff" />
+    <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Remove" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -201,6 +202,18 @@
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\ROW_NUMBER.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\CheckSnapshotDistributionAgentInitialFinish.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Tablediff\Tablediff.sql" />
+    <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Substring.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry\uspSQLSentryPerfCount.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry\uspGetSQLSentryPerfCountByDatetime.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry\uspCollectSQLSentryPerfCountAgg.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\SQL Sentry\Table_SQLSentryCpuUsgAggHist.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\CheckIfReplicationEnabled.sql" />
+    <None Include="PowerSQLScripts\SqlServer\01_Session_Requests\CurrentOpenTransByDbName.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\ReplAgentProxyAccount.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Repl_ChangeAgentExecueAccount.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\CollectIndexScript.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\Remove\RemoveReplication.sql" />
+    <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\uspGetReplTransCmdCount.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />

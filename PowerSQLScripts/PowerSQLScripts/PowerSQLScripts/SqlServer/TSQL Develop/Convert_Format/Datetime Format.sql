@@ -22,9 +22,38 @@ SELECT CAST( GETDATE() AS DATE)
 SELECT CAST(DATEADD(DAY, -1, GETDATE()) AS DATE)
 -- 2016-10-26
 
--- 當月
+-- 當月第一天
 SELECT DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0) AS StartOfMonth
 -- 2016-10-01 00:00:00.000
+SELECT  CONVERT(nvarchar(10),DATEADD(month, DATEDIFF(month, 0, GETDATE() ), 0), 120)  AS StartOfMonth
+-- 2016-10-01
+
+
+--To get the first day of the previous month in SQL Server, use the following code:
+SELECT DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) - 1, 0)
+-- 2018-03-01 00:00:00.000
+
+--To get the last day of the previous month:
+SELECT DATEADD(DAY, -(DAY(GETDATE())), GETDATE())
+-- 2018-03-31 11:55:06.467
+
+--To get the first day of the current month:
+SELECT DATEADD(mm, DATEDIFF(mm, 0, GETDATE()), 0)
+--2018-04-01 00:00:00.000
+
+--To get the last day of the current month:
+SELECT DATEADD (dd, -1, DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) + 1, 0))
+--2018-04-30 00:00:00.000
+
+--To get the first day of the next month:
+SELECT DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) + 1, 0)
+-- 2018-05-01 00:00:00.000
+--To get the last day of the next month:
+SELECT DATEADD (dd, -1, DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) + 2, 0))
+-- 2018-05-31 00:00:00.000
+
+
+
 
 
 -- 只要日期 或 時間

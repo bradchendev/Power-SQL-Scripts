@@ -23,6 +23,11 @@ Select * from @LogSpaceUsed;
 
 
 
+
+
+--Msg 8164, Level 16, State 1, Procedure SQLSentryPerformanceCounterCPU, Line 66
+--An INSERT EXEC statement cannot be nested.
+
 -- 利用linked server 無需事先建立資料表
 -- 不一定能成功，要看SP裡面的寫法
 sp_addlinkedserver @server = 'LOCALTEST',  @srvproduct = '',@provider = 'SQLOLEDB', @datasrc = @@servername
