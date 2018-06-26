@@ -4,7 +4,10 @@
 -- https://blogs.msdn.microsoft.com/bradchen/
 -- Create date: 2018/5/25
 -- Description:	collect all Index in DB
-
+-- 
+-- Modified date: 2018-06-22 
+--  1.Fix bug left join sys.filegroups and left join sys.partition_schemes
+--  2.add IndexName column
 -- =============================================
 
 
@@ -15,23 +18,28 @@ CREATE TABLE [dbo].[IndexBackup](
 	[CollectDateTime] [datetime] NULL,
 	[DB] [nvarchar](50) NULL,
 	[SchemaName] [nvarchar](50) NULL,
-	[TableName] [nvarchar](50) NULL,
+	[TableName] [nvarchar](200) NULL,
 	[Is_ms_shipped] [bit] NULL,
+	[IndexName] [nvarchar](500) NULL,
 	[CreateIndexSql] [nvarchar](max) NULL
 	);
 
 
+
 USE [DBA]
 GO
-/****** Object:  StoredProcedure [dbo].[uspCollectIndex]    Script Date: 05/25/2018 13:37:46 ******/
+
+/****** Object:  StoredProcedure [dbo].[uspCollectIndex]    Script Date: 06/22/2018 12:43:06 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
+
 --EXEC DBA.dbo.uspCollectIndex;
 --Create by Brad Chen
-ALTER PROC [dbo].[uspCollectIndex]
+CREATE PROC [dbo].[uspCollectIndex]
 AS
 SET NOCOUNT ON;
 DECLARE @DBname sysname;
@@ -67,6 +75,7 @@ BEGIN
 	Schema_name(T.Schema_id) as [SchemaName],
 	T.name as [TableName],
 	T.is_ms_shipped as [Is_ms_shipped],
+	I.name as [IndexName],
 	N'' CREATE '' + 
 		CASE WHEN I.is_unique = 1 THEN N'' UNIQUE '' ELSE N'''' END  +  
 		I.type_desc COLLATE DATABASE_DEFAULT + N'' INDEX '' +   
@@ -106,7 +115,8 @@ BEGIN
 	  ON I.object_id = tmp4.object_id AND I.Index_id = tmp4.index_id  
 	 JOIN sys.stats ST ON ST.object_id = I.object_id AND ST.stats_id = I.index_id   
 	 JOIN sys.data_spaces DS ON I.data_space_id=DS.data_space_id   
-	 JOIN sys.filegroups FG ON I.data_space_id=FG.data_space_id   
+	 Left JOIN sys.filegroups FG ON I.data_space_id=FG.data_space_id   
+	 Left JOIN sys.partition_schemes Ps ON I.data_space_id=Ps.data_space_id 
 	 LEFT JOIN (SELECT * FROM (   
 		SELECT IC2.object_id , IC2.index_id ,   
 			STUFF((SELECT N'' , '' + C.name  
@@ -136,7 +146,11 @@ DROP TABLE #DB;
 PRINT N'DELETE HISTORY';
 delete  DBA.dbo.IndexBackup WHERE CollectDateTime < CAST(DATEADD(DAY, -30, GETDATE()) AS DATE);
 PRINT @@ROWCOUNT;
+
 GO
+
+
+
 
 
 

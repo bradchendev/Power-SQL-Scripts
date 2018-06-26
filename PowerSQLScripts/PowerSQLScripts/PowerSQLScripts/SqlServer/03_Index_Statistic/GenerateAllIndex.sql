@@ -65,7 +65,8 @@ FROM sys.indexes I
   ON I.object_id = tmp4.object_id AND I.Index_id = tmp4.index_id  
  JOIN sys.stats ST ON ST.object_id = I.object_id AND ST.stats_id = I.index_id   
  JOIN sys.data_spaces DS ON I.data_space_id=DS.data_space_id   
- JOIN sys.filegroups FG ON I.data_space_id=FG.data_space_id   
+Left JOIN sys.filegroups FG ON I.data_space_id=FG.data_space_id   
+Left JOIN sys.partition_schemes Ps ON I.data_space_id=Ps.data_space_id 
  LEFT JOIN (SELECT * FROM (   
     SELECT IC2.object_id , IC2.index_id ,   
         STUFF((SELECT ' , ' + C.name  
