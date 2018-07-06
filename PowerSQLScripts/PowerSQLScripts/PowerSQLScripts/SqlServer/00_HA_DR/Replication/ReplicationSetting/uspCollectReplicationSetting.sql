@@ -7,6 +7,15 @@
 
 -- =============================================
 
+
+
+USE [DBA]
+GO
+/****** Object:  StoredProcedure [dbo].[uspCollectReplicationSetting]    Script Date: 07/05/2018 14:46:42 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 -- CREATE By Brad Chen
 -- Collect Replication Setting from Distribution 
 --
@@ -28,7 +37,7 @@
 --
 -- EXEC DBA.dbo.uspCollectReplicationSetting
 -- 
-ALTER PROCEDURE uspCollectReplicationSetting
+ALTER PROCEDURE [dbo].[uspCollectReplicationSetting]
 AS
 DECLARE @collectTime datetime = GETDATE();
 
@@ -46,7 +55,7 @@ INSERT INTO [DBA].[Repl].[MSarticles]
            ,[description]
            ,[destination_owner])
 SELECT @collectTime, * from distribution.dbo.[MSarticles];
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSdistribution_agents]
            ([CollectTime]
@@ -90,7 +99,7 @@ INSERT INTO [DBA].[Repl].[MSdistribution_agents]
            ,[subscriber_provider_string]
            ,[subscriber_catalog])
 SELECT @collectTime, * from distribution.dbo.[MSdistribution_agents];
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSlogreader_agents]
            ([CollectTime]
@@ -107,7 +116,7 @@ INSERT INTO [DBA].[Repl].[MSlogreader_agents]
            ,[publisher_password]
            ,[job_step_uid])
 SELECT @collectTime, * from distribution.dbo.[MSlogreader_agents];
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSmerge_agents]
            ([CollectTime]
@@ -135,7 +144,7 @@ INSERT INTO [DBA].[Repl].[MSmerge_agents]
            ,[publisher_password]
            ,[job_step_uid])
 SELECT @collectTime, * from distribution.dbo.[MSmerge_agents];
-
+PRINT @@ROWCOUNT
 
 
 INSERT INTO [DBA].[Repl].[MSpublications]
@@ -165,7 +174,7 @@ INSERT INTO [DBA].[Repl].[MSpublications]
       ,[min_autonosync_lsn]
 )
 SELECT @collectTime, * from distribution.dbo.[MSpublications]
-
+PRINT @@ROWCOUNT
 
 
 INSERT INTO [DBA].[Repl].[MSpublisher_databases]
@@ -175,7 +184,7 @@ INSERT INTO [DBA].[Repl].[MSpublisher_databases]
            ,[id]
            ,[publisher_engine_edition])
 SELECT @collectTime, * from distribution.dbo.[MSpublisher_databases]
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSqreader_agents]
            ([CollectTime]
@@ -185,6 +194,7 @@ INSERT INTO [DBA].[Repl].[MSqreader_agents]
            ,[profile_id]
            ,[job_step_uid])
 SELECT @collectTime, * from distribution.dbo.[MSqreader_agents]
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSrepl_identity_range]
            ([CollectTime]
@@ -199,7 +209,7 @@ INSERT INTO [DBA].[Repl].[MSrepl_identity_range]
            ,[threshold]
            ,[current_max])
 SELECT @collectTime, * from distribution.dbo.[MSrepl_identity_range]
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSsnapshot_agents]
            ([CollectTime]
@@ -219,7 +229,7 @@ INSERT INTO [DBA].[Repl].[MSsnapshot_agents]
            ,[publisher_password]
            ,[job_step_uid])
 SELECT @collectTime, * from distribution.dbo.[MSsnapshot_agents]
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSsubscriber_info]
            ([CollectTime]
@@ -231,7 +241,7 @@ INSERT INTO [DBA].[Repl].[MSsubscriber_info]
            ,[description]
            ,[security_mode])
 SELECT @collectTime, * from distribution.dbo.[MSsubscriber_info]
-
+PRINT @@ROWCOUNT
 
 INSERT INTO [DBA].[Repl].[MSsubscriptions]
            ([CollectTime]
@@ -256,51 +266,63 @@ INSERT INTO [DBA].[Repl].[MSsubscriptions]
            ,[ss_cplt_seqno]
            ,[nosync_type])
 SELECT @collectTime, * from distribution.dbo.[MSsubscriptions]
+PRINT @@ROWCOUNT
 
 -- delete	
 PRINT 'Delete [DBA].[Repl].[MSarticles] where [CollectTime] < 90 day'
 DELETE [DBA].[Repl].[MSarticles]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSdistribution_agents] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSdistribution_agents]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[[MSlogreader_agents] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSlogreader_agents]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSmerge_agents] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSmerge_agents]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSpublications] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSpublications]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSpublisher_databases] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSpublisher_databases]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSqreader_agents] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSqreader_agents]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSrepl_identity_range] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSrepl_identity_range]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSsnapshot_agents] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSsnapshot_agents]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSsubscriber_info] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSsubscriber_info]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 PRINT 'Delete [DBA].[Repl].[MSsubscriptions] where CollectTime < 90 day'	
 DELETE [DBA].[Repl].[MSsubscriptions]
 WHERE [CollectTime] < CAST(DATEADD(DAY, -90, @collectTime) AS DATE);
+PRINT @@ROWCOUNT
 
 GO
 

@@ -19,6 +19,20 @@ USE AdventureWorks2012;
 GRANT SELECT ON Person.Address TO RosaQdM;  
 GO 
 
+
+-- 整張表
+DENY SELECT ON [dbo].[Table_1] TO AppUser1
+GO
+REVOKE SELECT ON [dbo].[Table_1] TO AppUser1
+GO
+
+-- 指定欄位
+DENY SELECT ON [dbo].[Table_1]([Column1],[Column2]) TO AppUser1
+GO
+REVOKE SELECT ON [dbo].[Table_1]([Column1],[Column2]) TO AppUser1
+GO
+
+
 -- GRANT ON Column
 USE AdventureWorks2012;  
 GRANT SELECT ON Person.Address(PostalCode)  TO RosaQdM;  
