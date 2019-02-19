@@ -39,3 +39,16 @@ GO
 -- Remove the specific plan from the cache.  
 DBCC FREEPROCCACHE (0x060006001ECA270EC0215D05000000000000000000000000);  
 GO
+
+
+
+-- Find uspGetMyData SP plan cache
+DECLARE @cache_plan_handle varbinary(44)
+SELECT @cache_plan_handle = c.plan_handle
+FROM 
+ sys.dm_exec_cached_plans c
+ CROSS APPLY sys.dm_exec_sql_text(c.plan_handle) t
+WHERE 
+ text like 'CREATE%uspGetMyData%' 
+-- Never run DBCC FREEPROCCACHE without a parameter in production unless you want to lose all of your cached plans...
+DBCC FREEPROCCACHE(@cache_plan_handle)
