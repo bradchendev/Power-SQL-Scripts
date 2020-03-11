@@ -116,6 +116,41 @@ from sys.columns col
 order by tbl.name, col.column_id
 
 
+-- 
+select 
+	sch.name as [schema],
+	tbl.name as [Table], 
+	col.name as [Column],
+	[PK_Col].[type] as [is_PK],
+	col.is_identity,
+	typ.name as [DataType],
+	CASE WHEN  typ.name in ('nchar','nvarchar') THEN col.max_length/2
+	ELSE col.max_length END as [MaxLength],
+	col.is_nullable,
+	col.is_computed,
+	ext_p.name as [Extended Properties Name],
+	ext_p.value as [Extended Properties Value]
+from sys.columns col
+	inner join sys.tables tbl
+	on col.[object_id] = tbl.[object_id] and tbl.is_ms_shipped = 0
+	inner join sys.schemas sch
+	on tbl.[schema_id] = sch.[schema_id]
+	inner join sys.types typ
+	on col.system_type_id = typ.system_type_id and col.user_type_id = typ.user_type_id
+	Left join 
+		(select ic.[object_id],ic.[column_id], kCst.[type] from sys.key_constraints as kCst
+		inner join sys.index_columns as ic
+		on kCst.[type] = 'PK' and kCst.[parent_object_id] = ic.[object_id]
+		and kCst.unique_index_id = ic.index_id) as [PK_Col]
+	ON [PK_Col].column_id=col.[column_id] and [PK_Col].[object_id] = tbl.[object_id]
+	left join sys.extended_properties ext_p
+	on ext_p.class = 1 
+		and tbl.[object_id]=ext_p.major_id 
+		and col.column_id=ext_p.minor_id
+	where tbl.name = 'SalesOrderHeader'
+order by tbl.name, col.column_id
+
+
 --select * from AdventureWorks2008R2.sys.tables
 --select * from AdventureWorks2008R2.sys.columns 
 --select * from AdventureWorks2008R2.sys.types
