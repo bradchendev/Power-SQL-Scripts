@@ -51,3 +51,14 @@ ON DELETE CASCADE
 ALTER TABLE [Sales].[SalesOrderHeaderSalesReason] CHECK CONSTRAINT [FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID]
  
 COMMIT TRANSACTION
+
+
+
+SELECT
+  p.partition_number ,
+  p.rows ,
+  p.index_id
+FROM sys.partitions AS p
+  JOIN sys.tables AS t ON  p.object_id = t.object_id
+WHERE p.partition_id IS NOT NULL
+    AND t.name = 'SalesOrderHeader'
