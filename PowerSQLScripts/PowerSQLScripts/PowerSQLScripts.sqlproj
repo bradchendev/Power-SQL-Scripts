@@ -116,6 +116,7 @@
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\ReplicationSetting" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\MissingIndex" />
     <Folder Include="PowerSQLScripts\SqlServer\03_Index_Statistic\MissingIndex" />
+    <Folder Include="PowerSQLScripts\SqlServer\05_Migration" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
@@ -223,6 +224,7 @@
     <None Include="PowerSQLScripts\SqlServer\00_HA_DR\Replication\ReplicationSetting\uspCollectReplicationSetting.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\MissingIndex\03_Index_Statistic.sql" />
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\MissingIndex\usp_MissingIndexStats.sql" />
+    <None Include="PowerSQLScripts\SqlServer\05_Migration\FeaturesVerify.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
