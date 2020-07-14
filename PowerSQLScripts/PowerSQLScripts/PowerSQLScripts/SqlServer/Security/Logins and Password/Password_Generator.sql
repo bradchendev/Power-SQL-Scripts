@@ -8,7 +8,7 @@
 -- 例如:  以下字元密碼不要有，則在@CharacterList變數裡面去除
 -- XML特殊符號：< > & ' " 
 
-
+-- Method 1
 declare @NumOfCharacter tinyint, @i tinyint;
 declare @CharacterList varchar(100), @output varchar(12);
 set @NumOfCharacter = 12;
