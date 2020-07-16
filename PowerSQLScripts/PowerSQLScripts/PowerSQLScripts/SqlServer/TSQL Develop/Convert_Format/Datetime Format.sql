@@ -29,6 +29,14 @@ SELECT  CONVERT(nvarchar(10),DATEADD(month, DATEDIFF(month, 0, GETDATE() ), 0), 
 -- 2016-10-01
 
 
+-- current hour with 2-digital
+select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,getdate()) as varchar(2)),2) + ':00:00' as [d]
+
+-- last hour with 2-digital
+select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,DATEADD(hour,-1,getdate())) as varchar(2)),2) + ':00:00' as [d]
+
+
+
 --To get the first day of the previous month in SQL Server, use the following code:
 SELECT DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) - 1, 0)
 -- 2018-03-01 00:00:00.000
