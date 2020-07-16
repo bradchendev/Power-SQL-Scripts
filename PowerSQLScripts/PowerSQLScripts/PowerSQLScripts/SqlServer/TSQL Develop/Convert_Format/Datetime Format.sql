@@ -31,9 +31,32 @@ SELECT  CONVERT(nvarchar(10),DATEADD(month, DATEDIFF(month, 0, GETDATE() ), 0), 
 
 -- current hour with 2-digital
 select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,getdate()) as varchar(2)),2) + ':00:00' as [d]
-
 -- last hour with 2-digital
 select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,DATEADD(hour,-1,getdate())) as varchar(2)),2) + ':00:00' as [d]
+
+
+
+--declare @now datetime = cast('2020-01-01 00:22:00' as datetime)
+--select DATEPART(HOUR,@now) 
+declare @now datetime
+--set @now = getdate();
+set @now = cast('2020-07-15 23:22:00' as datetime)
+DECLARE @startDate datetime 
+DECLARE @endDate datetime
+If DATEPART(HOUR,@now) = 0
+BEGIN
+	SET @startDate = CAST(CAST(DATEADD(day,-1,@now) AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,DATEADD(hour,-1,@now)) as varchar(2)),2) + ':00:00';
+	SET @endDate = CAST(CAST(@now AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,@now) as varchar(2)),2) + ':00:00' ;
+END
+ELSE
+BEGIN
+    select 2;
+	SET @startDate = CAST(CAST(@now AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,DATEADD(hour,-1,@now)) as varchar(2)),2) + ':00:00'
+	SET @endDate = CAST(CAST(@now AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,@now) as varchar(2)),2) + ':00:00' 
+END
+SELECT @startDate as [start], @endDate as [end]
+
+
 
 
 
