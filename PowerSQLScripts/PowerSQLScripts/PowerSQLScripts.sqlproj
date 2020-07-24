@@ -274,5 +274,6 @@
     <Build Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection\vwListSessionWithWorkerThreads.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore\DB_Backup_Retore.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\比對資料.sql" />
+    <Build Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\delete_Data.sql" />
   </ItemGroup>
 </Project>
