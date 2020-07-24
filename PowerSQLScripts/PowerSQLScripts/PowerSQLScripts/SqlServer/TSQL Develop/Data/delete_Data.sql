@@ -22,6 +22,19 @@ WHILE (@Deleted_Rows > 0)
 END
 
 
+--DECLARE @Deleted_Rows INT;
+--SET @Deleted_Rows = 1;
+--WHILE (@Deleted_Rows > 0)
+--  BEGIN
+--	 update top (10000) OP30
+--	set Line  = SUBSTRING([fileName], 12, 4) 
+--	where Line is null
+
+--  SET @Deleted_Rows = @@ROWCOUNT;
+--END
+
+
+
 
 -- Method 2
 SET NOCOUNT ON;
