@@ -21,19 +21,19 @@ GO
 -- Create date:    2020/8/31 
 -- Description:    D18LocalDB File使用空間
 -- Modified By    Modification Date    Modification Description
--- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18local'
--- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localOP20'
--- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localOP30'
--- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localOP40'
--- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localSFC'
--- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localSMTLED'
+
+-- DECLARE @now nvarchar(20) = CONVERT(nvarchar(20), GETDATE(), 120);
+-- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18local', @chkTime = @now
+-- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localOP20', @chkTime = @now
+-- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localOP30', @chkTime = @now
+-- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localOP40', @chkTime = @now
+-- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localSFC', @chkTime = @now
+-- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localSMTLED', @chkTime = @now
 -- =============================================
 ALTER proc [dbo].[uspGetD18LocalDbFileSize]
-@Db nvarchar(30)
+@Db nvarchar(30), @chkTime nvarchar(20)
 AS
 set nocount on;
-DECLARE @now nvarchar(20) = CONVERT(nvarchar(20), GETDATE(), 120);
-
 	INSERT INTO [dbo].[DbFileSize](
 		[ChkTime]
 		  ,[DbServer]
@@ -47,7 +47,7 @@ DECLARE @now nvarchar(20) = CONVERT(nvarchar(20), GETDATE(), 120);
 		  ,[FG])
 	EXEC( N'USE ['+ @Db + N']
 	SELECT
-	N'''+ @now + N''' as [ChkTime],
+	N'''+ @chkTime + N''' as [ChkTime],
 	@@SERVERNAME as [DbServer],
 	''' + @Db + N''' as [DbName],
 	s.[name] AS [DbFile],
@@ -72,4 +72,5 @@ DECLARE @now nvarchar(20) = CONVERT(nvarchar(20), GETDATE(), 120);
 		AND (s.[drop_lsn] IS NULL)) 
 		AND (s.[data_space_id]=g.[data_space_id])
 	ORDER BY [FileId] ASC')  AT [D18LOCALDBA01];
+
 	
