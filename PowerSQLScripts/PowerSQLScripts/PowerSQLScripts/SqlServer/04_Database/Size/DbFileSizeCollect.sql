@@ -28,7 +28,7 @@ GO
 -- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localSFC'
 -- EXEC dbo.uspGetD18LocalDbFileSize @Db = 'd18localSMTLED'
 -- =============================================
-ALTER proc dbo.uspGetD18LocalDbFileSize
+ALTER proc [dbo].[uspGetD18LocalDbFileSize]
 @Db nvarchar(30)
 AS
 set nocount on;
@@ -65,10 +65,11 @@ DECLARE @now nvarchar(20) = CONVERT(nvarchar(20), GETDATE(), 120);
 		END AS [float]
 		) as [FreeKB],
 	g.[name] as [FG]
-	FROM d18localOP20.sys.filegroups AS g
-	INNER JOIN d18localOP20.sys.master_files AS s 
+	FROM sys.filegroups AS g
+	INNER JOIN sys.master_files AS s 
 		ON ((s.[type] = 2 or s.[type] = 0) 
 		AND s.[database_id] = db_id() 
 		AND (s.[drop_lsn] IS NULL)) 
 		AND (s.[data_space_id]=g.[data_space_id])
 	ORDER BY [FileId] ASC')  AT [D18LOCALDBA01];
+	
