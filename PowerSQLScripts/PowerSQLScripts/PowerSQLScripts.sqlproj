@@ -275,5 +275,8 @@
     <None Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore\DB_Backup_Retore.sql" />
     <None Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\比對資料.sql" />
     <Build Include="PowerSQLScripts\SqlServer\TSQL Develop\Data\delete_Data.sql" />
+    <Build Include="PowerSQLScripts\SqlServer\04_Database\Size\DbFileSizeCollect.sql" />
+    <Build Include="PowerSQLScripts\SqlServer\04_Database\Size\uspCleanDbFileSize.sql" />
+    <Build Include="PowerSQLScripts\SqlServer\04_Database\Size\uspGetDiskFreeSizeSendemailtoDBA_20200831.sql" />
   </ItemGroup>
 </Project>
