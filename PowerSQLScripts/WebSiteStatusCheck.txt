@@ -1,0 +1,21 @@
+REM =============================================
+REM Author:		Brad Chen
+REM Create date: 2020-09-11
+REM Description: Check WebSite 80 
+REM 
+REM =============================================
+
+set file="c:\Temp\WebSiteStatus.log"
+set website="https://mrms.mcd.com.tw/Tableau"
+set curlcmd="C:\Temp\curl-7.72.0-win64-mingw\bin\curl.exe"
+
+REM @echo %date% %time% >> %file%
+REM echo %website% >> %file%
+REM %curlcmd% -Is %website% | find "HTTP/2" >> %file%
+
+set now=%date:~0,10% %time%
+%curlcmd% -Is %website% | find "HTTP/2" > c:\Temp\tmp.txt
+set /p curlcmdoutput=<c:\Temp\tmp.txt
+set output=%now% %website% %curlcmdoutput%
+
+echo %output% >> %file%
