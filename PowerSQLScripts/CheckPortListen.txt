@@ -1,0 +1,9 @@
+Test-NetConnection
+Module: NetTCPIP
+Displays diagnostic information for a connection.
+https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=win10-ps
+
+Test-Connection
+Module: Microsoft.PowerShell.Management
+Sends ICMP echo request packets, or pings, to one or more computers.
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-connection?view=powershell-7

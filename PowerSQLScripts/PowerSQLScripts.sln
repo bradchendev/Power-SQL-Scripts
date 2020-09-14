@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerDevOpsScripts", "Power
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}"
 	ProjectSection(SolutionItems) = preProject
+		CheckPortListen.txt = CheckPortListen.txt
 		Convert_Encoding.txt = Convert_Encoding.txt
 		GenerateSQLDump.bat.txt = GenerateSQLDump.bat.txt
 		IpSec.txt = IpSec.txt
@@ -46,6 +47,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSite", "WebSite", "{811997FE-2ACF-408D-94A6-59548AB1DBF7}"
 	ProjectSection(SolutionItems) = preProject
 		WebSiteStatusCheck.txt = WebSiteStatusCheck.txt
+		WebSiteStatusCheckPowerShell.txt = WebSiteStatusCheckPowerShell.txt
 	EndProjectSection
 EndProject
 Global
