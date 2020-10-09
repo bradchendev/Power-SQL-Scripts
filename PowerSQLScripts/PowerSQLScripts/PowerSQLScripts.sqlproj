@@ -229,6 +229,7 @@
     <None Include="PowerSQLScripts\SqlServer\05_Migration\FeaturesVerify.sql" />
     <None Include="PowerSQLScripts\SqlServer\Partition Table\Partition Table.sql" />
     <None Include="PowerSQLScripts\SqlServer\Sample DB or Table\AdventureWorks\SalesOrderHeader.sql" />
+    <None Include="PowerSQLScripts\SqlServer\SQL Agent Job\BackupMSDBJobHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
