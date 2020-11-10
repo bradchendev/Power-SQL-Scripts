@@ -230,6 +230,8 @@
     <None Include="PowerSQLScripts\SqlServer\Partition Table\Partition Table.sql" />
     <None Include="PowerSQLScripts\SqlServer\Sample DB or Table\AdventureWorks\SalesOrderHeader.sql" />
     <None Include="PowerSQLScripts\SqlServer\SQL Agent Job\BackupMSDBJobHistory.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\Log_Spaceused.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\DB_SpaceUsed.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
