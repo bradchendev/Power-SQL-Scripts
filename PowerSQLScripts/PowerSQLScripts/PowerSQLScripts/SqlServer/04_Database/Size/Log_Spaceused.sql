@@ -11,3 +11,21 @@ DBCC SQLPERF(LOGSPACE);
 --msdb	8.179688	16.38013	0
 --AdventureWorks2017	71.99219	10.48833	0
 
+
+
+CREATE TABLE #TLogMon(
+	DB SYSNAME,
+	LogSizeMB DECIMAL(22,4),
+	LogSpaceUsed DECIMAL(5,2),
+	[Status] TINYINT,
+	RecordStamp DATETIME DEFAULT GETDATE()
+)
+ 
+ 
+INSERT INTO #TLogMon (DB,LogSizeMB,LogSpaceUsed,[Status]) 
+EXEC ('DBCC SQLPERF(LOGSPACE);')
+ 
+ 
+SELECT *
+FROM #TLogMon
+
