@@ -23,6 +23,13 @@ GO
 */
 
 
+-- Create a Primary key clustered index in exist table
+ALTER TABLE [dbo].[t1] ALTER COLUMN col1 int NOT NULL;
+ALTER TABLE [dbo].[t1]
+   ADD CONSTRAINT PK_t1_col1 PRIMARY KEY CLUSTERED (col1);
+
+
+
 
 -- Create a nonclustered index on a table or view  
 CREATE INDEX i1 ON t1 (col1);  
