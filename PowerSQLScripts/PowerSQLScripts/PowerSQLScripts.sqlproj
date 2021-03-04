@@ -106,7 +106,6 @@
     <Folder Include="PowerSQLScripts\SqlServer\Security\Connection" />
     <Folder Include="PowerSQLScripts\SqlServer\00_HA_DR\Mirroring" />
     <Folder Include="PowerSQLScripts\SqlServer\04_Database\Isolation Level" />
-    <Folder Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore" />
     <Folder Include="PowerSQLScripts\SqlServer\Performance Tuning\Worker Threads\Collection" />
     <Folder Include="PowerSQLScripts\SqlServer\Security\CloneLoginAndPerm" />
     <Folder Include="PowerSQLScripts\SqlServer\TSQL Develop\Data" />
@@ -233,7 +232,6 @@
     <None Include="PowerSQLScripts\SqlServer\04_Database\Size\Log_Spaceused.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\Size\DB_SpaceUsed.sql" />
     <None Include="PowerSQLScripts\SqlServer\Linked Server\LinkedServerProvider.sql" />
-    <None Include="PowerSQLScripts\SqlServer\04_Database\Backup Restore\DB_Backup_Retore.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
