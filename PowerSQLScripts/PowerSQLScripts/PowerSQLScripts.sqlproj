@@ -118,6 +118,7 @@
     <Folder Include="PowerSQLScripts\SqlServer\05_Migration" />
     <Folder Include="PowerSQLScripts\SqlServer\Partition Table" />
     <Folder Include="PowerSQLScripts\SqlServer\Sample DB or Table\AdventureWorks" />
+    <Folder Include="PowerSQLScripts\SqlServer\04_Database\BackupRestore" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_Identity.sql" />
