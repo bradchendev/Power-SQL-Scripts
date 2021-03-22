@@ -50,6 +50,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSite", "WebSite", "{8119
 		WebSiteStatusCheckPowerShell.txt = WebSiteStatusCheckPowerShell.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerShell", "PowerShell", "{965E81A7-0B41-4A90-8E8D-AAF7FC3EC495}"
+	ProjectSection(SolutionItems) = preProject
+		sendmail.txt = sendmail.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +80,7 @@ Global
 		{F57D662A-4739-41F7-B2D9-A075CA994B2A} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 		{814A477D-8634-45E7-B5E2-3F2B4FFC6935} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 		{811997FE-2ACF-408D-94A6-59548AB1DBF7} = {7E26A970-21A5-489C-BC1F-09CD8DCC7AA9}
+		{965E81A7-0B41-4A90-8E8D-AAF7FC3EC495} = {A1E7F687-C28F-4B9E-A8C5-990EED3E95BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84991C5E-2748-4E8B-ABE9-356604D84642}

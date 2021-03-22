@@ -1,0 +1,26 @@
+
+
+# c:\powershell\sendmail.ps1
+
+$EventId = 16,20,23,150,219,220
+
+$A = Get-WinEvent -MaxEvents 1  -FilterHashTable @{Logname = "System" ; ID = $EventId}
+$Message = $A.Message
+$EventID = $A.Id
+$MachineName = $A.MachineName
+$Source = $A.ProviderName
+
+
+$EmailFrom = "abc@contoso.com"
+$EmailTo = "abc@contoso.com"
+$Subject ="Alert From $MachineName"
+$Body = "EventID: $EventID`nSource: $Source`nMachineName: $MachineName `nMessage: $Message"
+$SMTPServer = "smtp.gmail.com"
+$SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, 587)
+$SMTPClient.EnableSsl = $true
+$SMTPClient.Credentials = New-Object System.Net.NetworkCredential("abc@contoso.com", "mySMTPP@55w0rd");
+$SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body)
+
+
+
+# C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe c:\powershell\sendmail.ps1
