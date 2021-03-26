@@ -24,3 +24,5 @@ $SMTPClient.Send($EmailFrom, $EmailTo, $Subject, $Body)
 
 
 # C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe c:\powershell\sendmail.ps1
+
+# https://www.altaro.com/msp-dojo/encrypt-password-powershell/

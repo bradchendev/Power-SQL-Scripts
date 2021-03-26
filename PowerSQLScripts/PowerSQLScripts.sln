@@ -42,6 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vbscript_WSH", "Vbscript_WS
 	ProjectSection(SolutionItems) = preProject
 		Comments.vbs.txt = Comments.vbs.txt
 		EventLog.vbs.txt = EventLog.vbs.txt
+		WebSiteExistCheck.txt = WebSiteExistCheck.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSite", "WebSite", "{811997FE-2ACF-408D-94A6-59548AB1DBF7}"
