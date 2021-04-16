@@ -234,6 +234,7 @@
     <None Include="PowerSQLScripts\SqlServer\Linked Server\LinkedServerProvider.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\BackupRestore.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Memory\Troubleshooting_MemoryUsage.sql" />
+    <None Include="PowerSQLScripts\SqlServer\Performance Tuning\TopWaitType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
