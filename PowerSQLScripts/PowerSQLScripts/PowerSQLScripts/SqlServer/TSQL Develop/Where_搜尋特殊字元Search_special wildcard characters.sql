@@ -41,3 +41,39 @@ SELECT c1
 FROM mytbl2  
 WHERE c1 LIKE '%10-15!% off%' ESCAPE '!';  
 GO
+
+
+
+USE master;  
+SELECT sess.session_id, sess.login_name, sess.group_id, grps.name   
+FROM sys.dm_exec_sessions AS sess   
+JOIN sys.dm_resource_governor_workload_groups AS grps   
+    ON sess.group_id = grps.group_id  
+WHERE session_id > 50;  
+GO
+
+
+
+-- _ (Wildcard - Match One Character) (Transact-SQL)
+-- https://docs.microsoft.com/zh-tw/sql/t-sql/language-elements/wildcard-match-one-character-transact-sql?view=sql-server-ver15
+
+SELECT name FROM sys.database_principals
+WHERE name LIKE 'db[_]%';
+
+
+
+-- [^] (Wildcard - Character(s) Not to Match) (Transact-SQL)
+-- https://docs.microsoft.com/zh-tw/sql/t-sql/language-elements/wildcard-character-s-not-to-match-transact-sql?view=sql-server-ver15
+
+-- Uses AdventureWorks  
+  
+SELECT TOP 5 FirstName, LastName  
+FROM Person.Person  
+WHERE FirstName LIKE 'Al[^a]%';
+
+SELECT [object_id], OBJECT_NAME(object_id) AS [object_name], name, column_id 
+FROM sys.columns 
+WHERE name LIKE '[^0-9A-z]%';
+
+
+
