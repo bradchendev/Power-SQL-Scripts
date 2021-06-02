@@ -60,7 +60,12 @@ GO
 SELECT name FROM sys.database_principals
 WHERE name LIKE 'db[_]%';
 
-
+--name
+---------------
+--db_owner
+--db_accessadmin
+--db_securityadmin
+--...
 
 -- [^] (Wildcard - Character(s) Not to Match) (Transact-SQL)
 -- https://docs.microsoft.com/zh-tw/sql/t-sql/language-elements/wildcard-character-s-not-to-match-transact-sql?view=sql-server-ver15

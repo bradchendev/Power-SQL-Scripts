@@ -13,6 +13,20 @@ ORDER BY SUM(wait_time) DESC;
 
 
  -- Waittype stats in the past
+
+ SELECT
+        [wait_type],
+        [wait_time_ms] / 1000.0 AS [WaitS],
+        ([wait_time_ms] - [signal_wait_time_ms]) / 1000.0 AS [ResourceS],
+        [signal_wait_time_ms] / 1000.0 AS [SignalS],
+        [waiting_tasks_count] AS [WaitCount],
+        100.0 * [wait_time_ms] / SUM ([wait_time_ms]) OVER() AS [Percentage],
+        ROW_NUMBER() OVER(ORDER BY [wait_time_ms] DESC) AS [RowNum]
+    FROM sys.dm_os_wait_stats
+	where [wait_type] like '%MEMORY%';
+
+GO
+
 WITH [Waits] AS
     (SELECT
         [wait_type],
