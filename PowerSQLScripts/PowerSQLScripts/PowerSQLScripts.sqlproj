@@ -236,6 +236,7 @@
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\Memory\Troubleshooting_MemoryUsage.sql" />
     <None Include="PowerSQLScripts\SqlServer\Performance Tuning\TopWaitType.sql" />
     <None Include="PowerSQLScripts\SqlServer\02_Tables\Table_FileGroup.sql" />
+    <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\IndexFragStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
