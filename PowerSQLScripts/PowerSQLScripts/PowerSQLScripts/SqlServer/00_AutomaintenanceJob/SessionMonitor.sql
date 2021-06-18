@@ -1,23 +1,29 @@
-﻿-- =============================================
+﻿USE [DBA]
+GO
+/****** Object:  StoredProcedure [dbo].[uspMonSession]    Script Date: 2021/6/18 下午 06:55:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
 -- Author:        Brad Chen
 -- Create date:    2021/6/18 
 -- Description:    monitor running session
 -- Modified By    Modification Date    Modification Description
 
--- EXEC [dbo].[uspMonSession] @BlocingOnly = 0
+-- EXEC [dbo].[uspMonSession] @BlocingOnly = 0, @mailRecipList = 'bradchen@xxxx.com;user2@xxxx.com'
 -- =============================================
 
-alter PROC [dbo].[uspMonSession]
-@BlocingOnly bit
+ALTER PROC [dbo].[uspMonSession]
+@BlocingOnly bit, @mailRecipList varchar(256)
 AS
 set nocount on;
 declare @chkTime nvarchar(20) = GETDATE()
-declare @mailRecipList varchar(256), @mailTitle nvarchar(100)
+declare @mailTitle nvarchar(100)
 declare @blockcnt int
 -- detect long running queyr > 180 sec
 declare @longRunQuryThreshold int = 180
 
-set @mailRecipList = 'bradchen@systex.com'
 set @mailTitle = 'SQL Server Session Monitoring'
 
 If @BlocingOnly = 1
@@ -219,4 +225,3 @@ begin
       @body = @mailhtmlbody
 
 end
-GO
