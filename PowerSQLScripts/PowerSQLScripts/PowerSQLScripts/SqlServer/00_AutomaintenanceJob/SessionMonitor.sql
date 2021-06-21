@@ -1,6 +1,6 @@
 ﻿USE [DBA]
 GO
-/****** Object:  StoredProcedure [dbo].[uspMonSession]    Script Date: 2021/6/18 下午 06:55:22 ******/
+/****** Object:  StoredProcedure [dbo].[uspMonSession]    Script Date: 2021/6/21 下午 08:05:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11,7 +11,7 @@ GO
 -- Description:    monitor running session
 -- Modified By    Modification Date    Modification Description
 
--- EXEC [dbo].[uspMonSession] @BlocingOnly = 0, @mailRecipList = 'bradchen@xxxx.com;user2@xxxx.com'
+-- EXEC [dbo].[uspMonSession] @BlocingOnly = 0, @mailRecipList = 'bradchen@systex.com;shawnlai@systex.com'
 -- =============================================
 
 ALTER PROC [dbo].[uspMonSession]
@@ -22,9 +22,10 @@ declare @chkTime nvarchar(20) = GETDATE()
 declare @mailTitle nvarchar(100)
 declare @blockcnt int
 -- detect long running queyr > 180 sec
-declare @longRunQuryThreshold int = 180
+declare @longRunQuryThreshold1 int = 300
+declare @longRunQuryThreshold2 int = 1800
 
-set @mailTitle = 'SQL Server Session Monitoring'
+set @mailTitle = N'SQL Server Session Monitoring - ' + @@SERVERNAME
 
 If @BlocingOnly = 1
 begin
@@ -59,28 +60,29 @@ begin
 	--SET @mailhtmlbody = '';
 	
 	DECLARE @htmlTable nvarchar(MAX)=N'';
-	SET @htmlTable = N'<tr>'
-				+ N'<td>se_id</td>'
-				+ N'<td>duration(sec)</td>'
-				+ N'<td>blocker</td>'
-				+ N'<td>se_status</td>'
-				+ N'<td>req_status</td>'
-				+ N'<td>req_waitType</td>'
-				+ N'<td>req_waitTime</td>'
-				+ N'<td>client</td>'
-				+ N'<td>prog</td>'
-				+ N'<td>login</td>'
-				+ N'<td>lastReqStartTime</td>'
-				+ N'<td>lastReqEndTime</td>'
-				+ N'<td>reqParentQuery</td>'
-				+ N'<td>reqStatement</td>'
-				+ N'<td>con_most_recent_sql</td>'
-				+ N'</tr>';
+	SET @htmlTable = CONCAT(N'<tr>'
+				, N'<td>se_id</td>'
+				, N'<td>duration(sec)</td>'
+				, N'<td>blocker</td>'
+				, N'<td>se_status</td>'
+				, N'<td>req_status</td>'
+				, N'<td>req_waitType</td>'
+				, N'<td>req_waitTime</td>'
+				, N'<td>client</td>'
+				, N'<td>prog</td>'
+				, N'<td>login</td>'
+				, N'<td>lastReqStartTime</td>'
+				, N'<td>lastReqEndTime</td>'
+				, N'<td>reqParentQuery</td>'
+				, N'<td>reqStatement</td>'
+				, N'<td>con_most_recent_sql</td>'
+				, N'</tr>');
 
 	DECLARE @curSessions Table
 	(
 	[RowID] int,
 	[session_id] [smallint] NOT NULL,
+	[duration] [int] NOT NULL,
 	[blocker] [smallint] NULL,
 	[se_status] [nvarchar](30) NOT NULL,
 	[req_status] [nvarchar](30) NULL,
@@ -100,6 +102,7 @@ begin
 	INSERT INTO @curSessions (
 	[RowID],
 	[session_id],
+	[duration],
 	[blocker] ,
 	[se_status] ,
 	[req_status],
@@ -116,6 +119,7 @@ begin
 	SELECT 
 	ROW_NUMBER() OVER (ORDER BY req.cpu_time DESC) AS [RowID],
 	se.session_id, 
+	CASE WHEN req.status is not null THEN datediff(SECOND,last_request_start_time, getdate()) ELSE 0 END as [duration],
 	req.blocking_session_id as [blocker],
 	se.status as [se_status],
 	req.status as [req_status],
@@ -134,12 +138,15 @@ begin
 	Left join sys.dm_exec_requests req on req.session_id = se.session_id
 	OUTER APPLY sys.dm_exec_sql_text(req.sql_handle) AS st
 	OUTER APPLY sys.dm_exec_sql_text(con.most_recent_sql_handle) AS st2
-
+	ORDER BY datediff(SECOND,last_request_start_time, getdate()) DESC;
 
 	Declare @longRunQury int = 0
 	select @longRunQury = count(*) from @curSessions where req_status is not null
-	and datediff(SECOND,last_request_start_time, getdate()) > @longRunQuryThreshold;
+	and duration > @longRunQuryThreshold1;
 
+	Declare @longRunQury2 int = 0
+	select @longRunQury2 = count(*) from @curSessions where req_status is not null
+	and duration > @longRunQuryThreshold2;
 
 
 	SELECT @MaxRowID = MAX([RowID]) FROM @curSessions
@@ -166,7 +173,7 @@ begin
 
 		select 
 			@session_id = session_id, 
-			@duration = datediff(SECOND,last_request_start_time, getdate()),
+			@duration = duration,
 			@blocker = blocker , 
 			@se_status = se_status , 
 			@req_status = req_status, 
@@ -186,7 +193,9 @@ begin
 		SET  @htmlTable = CONCAT(@htmlTable
 					, N'<tr>'
 					, N'<td>', CAST(@session_id as nvarchar) , N'</td>' 
-					, N'<td>', CAST(@duration as nvarchar) , N'</td>' 
+					, N'<td>', CASE WHEN @duration > @longRunQuryThreshold2 THEN '<font color="red">' WHEN @duration > @longRunQuryThreshold1 THEN '<font color="orange">' ELSE '' END 
+						, CAST(@duration as nvarchar), CASE WHEN @duration > @longRunQuryThreshold1 THEN '</font>' ELSE '' END 
+						, N'</td>' 
 					, N'<td>', CAST(@blocker as nvarchar) , N'</td>' 
 					, N'<td>', @se_status , N'</td>'  
 					, N'<td>', @req_status , N'</td>' 
@@ -205,12 +214,13 @@ begin
 		--SELECT LEN(@htmlTable),@htmlTable;
 	END
 
-	SET @mailhtmlbody =  N'<html>'
-	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'檢查時間: ' , CONVERT(nvarchar(23), @chkTime, 121) , N'<p>');
-	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'主機名稱: ' , @@SERVERNAME , N'<p>');
-	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'SQL版本: ' , Substring(@@VERSION,11, 15) , N'<p>');
-	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'連線數量: ' , CAST(@MaxRowID as nvarchar) , N'<p>');
-	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'執行超過', CAST(@longRunQuryThreshold as nvarchar ) , N'秒,共有 ',CAST(@longRunQury as nvarchar ),N' 條連線' );
+	SET @mailhtmlbody =  CONCAT(N'<html>', N'檢查時間:&nbsp;' , CONVERT(nvarchar(23), @chkTime, 121) , N'<br>');
+	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'主機名稱:&nbsp;' , @@SERVERNAME , N'<br>', N'  SQL版本: ' , Substring(@@VERSION,11, 15) , N'<br>');
+	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , 
+								N'總連線數:&nbsp;' , CAST(@MaxRowID as nvarchar) ,
+								N'&nbsp;&nbsp;(&nbsp;',CAST(@longRunQury as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold1/60 as nvarchar ) , N'&nbsp;分鐘,',
+								N'&nbsp;&nbsp;',CAST(@longRunQury2 as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold2/60 as nvarchar ) , N'&nbsp;分鐘)'
+								)
 	If @MaxRowID > 100
 		SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'連線數量超過50條，以下僅列出前50<p>');
 	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'<table border="1">' , @htmlTable ,  N'</table></html>');
