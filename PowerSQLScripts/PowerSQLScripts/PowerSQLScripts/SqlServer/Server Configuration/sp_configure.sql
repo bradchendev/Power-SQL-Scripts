@@ -1,7 +1,7 @@
 ﻿-- =============================================
 -- Author:		Brad Chen
 -- https://github.com/bradchendev/Power-SQL-Scripts
--- https://blogs.msdn.microsoft.com/bradchen/
+-- https://bradctchen.blogspot.com/
 -- Create date: 2017/7/8
 -- Description:	Server Configuration 
 
