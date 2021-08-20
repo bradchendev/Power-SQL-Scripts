@@ -1,6 +1,6 @@
 ﻿USE [DBA]
 GO
-/****** Object:  StoredProcedure [dbo].[uspMonSession]    Script Date: 2021/6/21 下午 08:05:41 ******/
+/****** Object:  StoredProcedure [dbo].[uspMonSession]    Script Date: 2021/6/23 下午 01:29:55 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -24,6 +24,8 @@ declare @blockcnt int
 -- detect long running queyr > 180 sec
 declare @longRunQuryThreshold1 int = 300
 declare @longRunQuryThreshold2 int = 1800
+declare @longRunQuryThreshold3 int = 7200
+declare @longRunQuryThreshold4 int = 43200
 
 set @mailTitle = N'SQL Server Session Monitoring - ' + @@SERVERNAME
 
@@ -142,12 +144,19 @@ begin
 
 	Declare @longRunQury int = 0
 	select @longRunQury = count(*) from @curSessions where req_status is not null
-	and duration > @longRunQuryThreshold1;
+	and duration > @longRunQuryThreshold1 and duration < @longRunQuryThreshold2;
 
 	Declare @longRunQury2 int = 0
 	select @longRunQury2 = count(*) from @curSessions where req_status is not null
-	and duration > @longRunQuryThreshold2;
+	and duration >= @longRunQuryThreshold2 and duration < @longRunQuryThreshold3;
 
+	Declare @longRunQury3 int = 0
+	select @longRunQury3 = count(*) from @curSessions where req_status is not null
+	and duration >= @longRunQuryThreshold3 and duration < @longRunQuryThreshold4;
+
+	Declare @longRunQury4 int = 0
+	select @longRunQury4 = count(*) from @curSessions where req_status is not null
+	and duration >= @longRunQuryThreshold4;
 
 	SELECT @MaxRowID = MAX([RowID]) FROM @curSessions
 
@@ -219,7 +228,9 @@ begin
 	SET @mailhtmlbody =  CONCAT(@mailhtmlbody , 
 								N'總連線數:&nbsp;' , CAST(@MaxRowID as nvarchar) ,
 								N'&nbsp;&nbsp;(&nbsp;',CAST(@longRunQury as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold1/60 as nvarchar ) , N'&nbsp;分鐘,',
-								N'&nbsp;&nbsp;',CAST(@longRunQury2 as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold2/60 as nvarchar ) , N'&nbsp;分鐘)'
+								N'&nbsp;&nbsp;',CAST(@longRunQury2 as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold2/60 as nvarchar ) , N'&nbsp;分鐘,',
+								N'&nbsp;&nbsp;',CAST(@longRunQury3 as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold3/60 as nvarchar ) , N'&nbsp;分鐘,',
+								N'&nbsp;&nbsp;',CAST(@longRunQury4 as nvarchar ),N'&nbsp;條執行超過&nbsp;', CAST(@longRunQuryThreshold4/60/60 as nvarchar ) , N'&nbsp;小時)'
 								)
 	If @MaxRowID > 100
 		SET @mailhtmlbody =  CONCAT(@mailhtmlbody , N'連線數量超過50條，以下僅列出前50<p>');

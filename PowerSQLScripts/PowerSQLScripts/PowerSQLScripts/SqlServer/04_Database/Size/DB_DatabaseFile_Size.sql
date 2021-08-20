@@ -33,3 +33,13 @@ ORDER BY [ID] ASC
 --tempdev2	T:\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\tempdev2.ndf	8388608	36160	3	PRIMARY
 --tempdev3	T:\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\tempdev3.ndf	8388608	37888	4	PRIMARY
 --tempdev4	T:\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\tempdev4.ndf	8388608	37376	5	PRIMARY
+
+
+
+-- file size and file group
+SELECT DB_NAME() AS DbName,
+name AS FileName,
+FILEGROUP_NAME(data_space_id) as FileGroup,
+size/128.0 AS CurrentSizeMB,
+size/128.0 - CAST(FILEPROPERTY(name, 'SpaceUsed') AS INT)/128.0 AS FreeSpaceMB
+FROM sys.database_files;

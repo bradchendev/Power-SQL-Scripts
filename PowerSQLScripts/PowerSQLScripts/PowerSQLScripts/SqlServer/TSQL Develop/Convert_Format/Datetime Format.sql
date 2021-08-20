@@ -31,8 +31,14 @@ SELECT  CONVERT(nvarchar(10),DATEADD(month, DATEDIFF(month, 0, GETDATE() ), 0), 
 
 -- current hour with 2-digital
 select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,getdate()) as varchar(2)),2) + ':00:00' as [d]
+-- 2020-01-01 09:00:00
+
 -- last hour with 2-digital
 select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,DATEADD(hour,-1,getdate())) as varchar(2)),2) + ':00:00' as [d]
+
+-- current hour and minutes with 2-digital
+select CAST(CAST(getdate() AS DATE) as varchar(10)) + ' ' + right('0' + CAST(DATEPART(hour,getdate()) as varchar(2)),2) + ':' + right('0' + CAST(DATEPART(minute,getdate()) as varchar(2)),2) + ':00' as [d]
+-- 2020-01-01 09:22:00
 
 
 

@@ -239,6 +239,7 @@
     <None Include="PowerSQLScripts\SqlServer\03_Index_Statistic\IndexFragStatus.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_AutomaintenanceJob\SessionMonitor.sql" />
     <None Include="PowerSQLScripts\SqlServer\00_AutomaintenanceJob\JobStatuMonitor.sql" />
+    <None Include="PowerSQLScripts\SqlServer\04_Database\Size\cannot remove extra transaction log file.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
