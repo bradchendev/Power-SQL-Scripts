@@ -241,6 +241,7 @@
     <None Include="PowerSQLScripts\SqlServer\00_AutomaintenanceJob\JobStatuMonitor.sql" />
     <None Include="PowerSQLScripts\SqlServer\04_Database\Size\cannot remove extra transaction log file.sql" />
     <None Include="PowerSQLScripts\SqlServer\Server Configuration\SQLInstance.sql" />
+    <None Include="PowerSQLScripts\SqlServer\02_Tables\GenCreateTableScript.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PowerSQLScripts\SqlServer\04_Database\DB_Create_Move.sql" />
