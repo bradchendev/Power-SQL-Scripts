@@ -26,6 +26,7 @@ SELECT
  WHEN 'P' THEN 'Partial'
  WHEN 'Q' THEN 'Differential Partial'
  END AS BackupType,
+ bs.is_copy_only,
  bmf.physical_device_name,
  CAST(bs.first_lsn AS VARCHAR(50)) AS first_lsn,
  CAST(bs.last_lsn AS VARCHAR(50)) AS last_lsn,
